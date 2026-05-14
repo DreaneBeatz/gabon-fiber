@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as ServicesRouteImport } from './routes/services'
 import { Route as ReseauRouteImport } from './routes/reseau'
 import { Route as MissionRouteImport } from './routes/mission'
+import { Route as ActualitesRouteImport } from './routes/actualites'
 import { Route as IndexRouteImport } from './routes/index'
 
 const ServicesRoute = ServicesRouteImport.update({
@@ -29,6 +30,11 @@ const MissionRoute = MissionRouteImport.update({
   path: '/mission',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ActualitesRoute = ActualitesRouteImport.update({
+  id: '/actualites',
+  path: '/actualites',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -37,12 +43,14 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/actualites': typeof ActualitesRoute
   '/mission': typeof MissionRoute
   '/reseau': typeof ReseauRoute
   '/services': typeof ServicesRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/actualites': typeof ActualitesRoute
   '/mission': typeof MissionRoute
   '/reseau': typeof ReseauRoute
   '/services': typeof ServicesRoute
@@ -50,20 +58,22 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/actualites': typeof ActualitesRoute
   '/mission': typeof MissionRoute
   '/reseau': typeof ReseauRoute
   '/services': typeof ServicesRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/mission' | '/reseau' | '/services'
+  fullPaths: '/' | '/actualites' | '/mission' | '/reseau' | '/services'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/mission' | '/reseau' | '/services'
-  id: '__root__' | '/' | '/mission' | '/reseau' | '/services'
+  to: '/' | '/actualites' | '/mission' | '/reseau' | '/services'
+  id: '__root__' | '/' | '/actualites' | '/mission' | '/reseau' | '/services'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ActualitesRoute: typeof ActualitesRoute
   MissionRoute: typeof MissionRoute
   ReseauRoute: typeof ReseauRoute
   ServicesRoute: typeof ServicesRoute
@@ -92,6 +102,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MissionRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/actualites': {
+      id: '/actualites'
+      path: '/actualites'
+      fullPath: '/actualites'
+      preLoaderRoute: typeof ActualitesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -104,6 +121,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ActualitesRoute: ActualitesRoute,
   MissionRoute: MissionRoute,
   ReseauRoute: ReseauRoute,
   ServicesRoute: ServicesRoute,
