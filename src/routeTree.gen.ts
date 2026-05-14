@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as ServicesRouteImport } from './routes/services'
 import { Route as ReseauRouteImport } from './routes/reseau'
 import { Route as MissionRouteImport } from './routes/mission'
+import { Route as GouvernanceRouteImport } from './routes/gouvernance'
 import { Route as ActualitesRouteImport } from './routes/actualites'
 import { Route as IndexRouteImport } from './routes/index'
 
@@ -30,6 +31,11 @@ const MissionRoute = MissionRouteImport.update({
   path: '/mission',
   getParentRoute: () => rootRouteImport,
 } as any)
+const GouvernanceRoute = GouvernanceRouteImport.update({
+  id: '/gouvernance',
+  path: '/gouvernance',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ActualitesRoute = ActualitesRouteImport.update({
   id: '/actualites',
   path: '/actualites',
@@ -44,6 +50,7 @@ const IndexRoute = IndexRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/actualites': typeof ActualitesRoute
+  '/gouvernance': typeof GouvernanceRoute
   '/mission': typeof MissionRoute
   '/reseau': typeof ReseauRoute
   '/services': typeof ServicesRoute
@@ -51,6 +58,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/actualites': typeof ActualitesRoute
+  '/gouvernance': typeof GouvernanceRoute
   '/mission': typeof MissionRoute
   '/reseau': typeof ReseauRoute
   '/services': typeof ServicesRoute
@@ -59,21 +67,42 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/actualites': typeof ActualitesRoute
+  '/gouvernance': typeof GouvernanceRoute
   '/mission': typeof MissionRoute
   '/reseau': typeof ReseauRoute
   '/services': typeof ServicesRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/actualites' | '/mission' | '/reseau' | '/services'
+  fullPaths:
+    | '/'
+    | '/actualites'
+    | '/gouvernance'
+    | '/mission'
+    | '/reseau'
+    | '/services'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/actualites' | '/mission' | '/reseau' | '/services'
-  id: '__root__' | '/' | '/actualites' | '/mission' | '/reseau' | '/services'
+  to:
+    | '/'
+    | '/actualites'
+    | '/gouvernance'
+    | '/mission'
+    | '/reseau'
+    | '/services'
+  id:
+    | '__root__'
+    | '/'
+    | '/actualites'
+    | '/gouvernance'
+    | '/mission'
+    | '/reseau'
+    | '/services'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ActualitesRoute: typeof ActualitesRoute
+  GouvernanceRoute: typeof GouvernanceRoute
   MissionRoute: typeof MissionRoute
   ReseauRoute: typeof ReseauRoute
   ServicesRoute: typeof ServicesRoute
@@ -102,6 +131,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MissionRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/gouvernance': {
+      id: '/gouvernance'
+      path: '/gouvernance'
+      fullPath: '/gouvernance'
+      preLoaderRoute: typeof GouvernanceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/actualites': {
       id: '/actualites'
       path: '/actualites'
@@ -122,6 +158,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ActualitesRoute: ActualitesRoute,
+  GouvernanceRoute: GouvernanceRoute,
   MissionRoute: MissionRoute,
   ReseauRoute: ReseauRoute,
   ServicesRoute: ServicesRoute,
