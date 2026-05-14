@@ -78,10 +78,12 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "description", content: "Opérateur de gros neutre du backbone fibre optique national du Gabon. 3 350 km, accès ouvert, souveraineté numérique." },
       { name: "author", content: "Gabon Fiber SA" },
       { property: "og:title", content: "Gabon Fiber SA — Le Carrefour des Réseaux" },
-      { property: "og:description", content: "Successeur de la DSP Axione. Opérateur wholesale exclusif du backbone fibre national gabonais." },
+      { property: "og:description", content: "Opérateur de gros neutre du backbone fibre optique national du Gabon. 3 350 km, accès ouvert, souveraineté numérique." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
       { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:title", content: "Gabon Fiber SA — Le Carrefour des Réseaux" },
+      { name: "twitter:description", content: "Opérateur de gros neutre du backbone fibre optique national du Gabon. 3 350 km, accès ouvert, souveraineté numérique." },
     ],
     links: [
       {
