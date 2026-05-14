@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as ServicesRouteImport } from './routes/services'
 import { Route as ReseauRouteImport } from './routes/reseau'
 import { Route as MissionRouteImport } from './routes/mission'
+import { Route as InvestisseursRouteImport } from './routes/investisseurs'
 import { Route as GouvernanceRouteImport } from './routes/gouvernance'
 import { Route as ActualitesRouteImport } from './routes/actualites'
 import { Route as IndexRouteImport } from './routes/index'
@@ -29,6 +30,11 @@ const ReseauRoute = ReseauRouteImport.update({
 const MissionRoute = MissionRouteImport.update({
   id: '/mission',
   path: '/mission',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const InvestisseursRoute = InvestisseursRouteImport.update({
+  id: '/investisseurs',
+  path: '/investisseurs',
   getParentRoute: () => rootRouteImport,
 } as any)
 const GouvernanceRoute = GouvernanceRouteImport.update({
@@ -51,6 +57,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/actualites': typeof ActualitesRoute
   '/gouvernance': typeof GouvernanceRoute
+  '/investisseurs': typeof InvestisseursRoute
   '/mission': typeof MissionRoute
   '/reseau': typeof ReseauRoute
   '/services': typeof ServicesRoute
@@ -59,6 +66,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/actualites': typeof ActualitesRoute
   '/gouvernance': typeof GouvernanceRoute
+  '/investisseurs': typeof InvestisseursRoute
   '/mission': typeof MissionRoute
   '/reseau': typeof ReseauRoute
   '/services': typeof ServicesRoute
@@ -68,6 +76,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/actualites': typeof ActualitesRoute
   '/gouvernance': typeof GouvernanceRoute
+  '/investisseurs': typeof InvestisseursRoute
   '/mission': typeof MissionRoute
   '/reseau': typeof ReseauRoute
   '/services': typeof ServicesRoute
@@ -78,6 +87,7 @@ export interface FileRouteTypes {
     | '/'
     | '/actualites'
     | '/gouvernance'
+    | '/investisseurs'
     | '/mission'
     | '/reseau'
     | '/services'
@@ -86,6 +96,7 @@ export interface FileRouteTypes {
     | '/'
     | '/actualites'
     | '/gouvernance'
+    | '/investisseurs'
     | '/mission'
     | '/reseau'
     | '/services'
@@ -94,6 +105,7 @@ export interface FileRouteTypes {
     | '/'
     | '/actualites'
     | '/gouvernance'
+    | '/investisseurs'
     | '/mission'
     | '/reseau'
     | '/services'
@@ -103,6 +115,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ActualitesRoute: typeof ActualitesRoute
   GouvernanceRoute: typeof GouvernanceRoute
+  InvestisseursRoute: typeof InvestisseursRoute
   MissionRoute: typeof MissionRoute
   ReseauRoute: typeof ReseauRoute
   ServicesRoute: typeof ServicesRoute
@@ -129,6 +142,13 @@ declare module '@tanstack/react-router' {
       path: '/mission'
       fullPath: '/mission'
       preLoaderRoute: typeof MissionRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/investisseurs': {
+      id: '/investisseurs'
+      path: '/investisseurs'
+      fullPath: '/investisseurs'
+      preLoaderRoute: typeof InvestisseursRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/gouvernance': {
@@ -159,6 +179,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ActualitesRoute: ActualitesRoute,
   GouvernanceRoute: GouvernanceRoute,
+  InvestisseursRoute: InvestisseursRoute,
   MissionRoute: MissionRoute,
   ReseauRoute: ReseauRoute,
   ServicesRoute: ServicesRoute,
