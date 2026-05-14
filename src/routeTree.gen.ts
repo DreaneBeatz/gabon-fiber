@@ -14,6 +14,7 @@ import { Route as ReseauRouteImport } from './routes/reseau'
 import { Route as MissionRouteImport } from './routes/mission'
 import { Route as InvestisseursRouteImport } from './routes/investisseurs'
 import { Route as GouvernanceRouteImport } from './routes/gouvernance'
+import { Route as ContactRouteImport } from './routes/contact'
 import { Route as ActualitesRouteImport } from './routes/actualites'
 import { Route as IndexRouteImport } from './routes/index'
 
@@ -42,6 +43,11 @@ const GouvernanceRoute = GouvernanceRouteImport.update({
   path: '/gouvernance',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ActualitesRoute = ActualitesRouteImport.update({
   id: '/actualites',
   path: '/actualites',
@@ -56,6 +62,7 @@ const IndexRoute = IndexRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/actualites': typeof ActualitesRoute
+  '/contact': typeof ContactRoute
   '/gouvernance': typeof GouvernanceRoute
   '/investisseurs': typeof InvestisseursRoute
   '/mission': typeof MissionRoute
@@ -65,6 +72,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/actualites': typeof ActualitesRoute
+  '/contact': typeof ContactRoute
   '/gouvernance': typeof GouvernanceRoute
   '/investisseurs': typeof InvestisseursRoute
   '/mission': typeof MissionRoute
@@ -75,6 +83,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/actualites': typeof ActualitesRoute
+  '/contact': typeof ContactRoute
   '/gouvernance': typeof GouvernanceRoute
   '/investisseurs': typeof InvestisseursRoute
   '/mission': typeof MissionRoute
@@ -86,6 +95,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/actualites'
+    | '/contact'
     | '/gouvernance'
     | '/investisseurs'
     | '/mission'
@@ -95,6 +105,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/actualites'
+    | '/contact'
     | '/gouvernance'
     | '/investisseurs'
     | '/mission'
@@ -104,6 +115,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/actualites'
+    | '/contact'
     | '/gouvernance'
     | '/investisseurs'
     | '/mission'
@@ -114,6 +126,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ActualitesRoute: typeof ActualitesRoute
+  ContactRoute: typeof ContactRoute
   GouvernanceRoute: typeof GouvernanceRoute
   InvestisseursRoute: typeof InvestisseursRoute
   MissionRoute: typeof MissionRoute
@@ -158,6 +171,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof GouvernanceRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/actualites': {
       id: '/actualites'
       path: '/actualites'
@@ -178,6 +198,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ActualitesRoute: ActualitesRoute,
+  ContactRoute: ContactRoute,
   GouvernanceRoute: GouvernanceRoute,
   InvestisseursRoute: InvestisseursRoute,
   MissionRoute: MissionRoute,
