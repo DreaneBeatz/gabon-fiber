@@ -74,16 +74,15 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Gabon Fiber SA — Le Carrefour des Réseaux" },
-      { name: "description", content: "Opérateur de gros neutre du backbone fibre optique national du Gabon. 3 350 km, accès ouvert, souveraineté numérique." },
+      { title: "Gabon Fiber SA — Connecter l'avenir" },
+      { name: "description", content: "Opérateur de gros neutre du backbone fibre optique national du Gabon. 1 700 km existants, +1 650 km d'extensions, 3 350 km cible. Open access et souveraineté numérique." },
       { name: "author", content: "Gabon Fiber SA" },
-      { property: "og:title", content: "Gabon Fiber SA — Le Carrefour des Réseaux" },
-      { property: "og:description", content: "Opérateur de gros neutre du backbone fibre optique national du Gabon. 3 350 km, accès ouvert, souveraineté numérique." },
+      { property: "og:title", content: "Gabon Fiber SA — Connecter l'avenir" },
+      { property: "og:description", content: "Opérateur de gros neutre du backbone fibre optique national du Gabon. Open access, souveraineté numérique." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
-      { name: "twitter:site", content: "@Lovable" },
-      { name: "twitter:title", content: "Gabon Fiber SA — Le Carrefour des Réseaux" },
-      { name: "twitter:description", content: "Opérateur de gros neutre du backbone fibre optique national du Gabon. 3 350 km, accès ouvert, souveraineté numérique." },
+      { name: "twitter:title", content: "Gabon Fiber SA — Connecter l'avenir" },
+      { name: "twitter:description", content: "Opérateur de gros neutre du backbone fibre optique national du Gabon. Open access, souveraineté numérique." },
     ],
     links: [
       {
