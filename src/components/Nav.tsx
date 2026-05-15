@@ -1,30 +1,35 @@
-import { Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
+import { Link } from "@tanstack/react-router";
 
 export function Logo({ className = "w-9 h-9" }: { className?: string }) {
   return (
     <svg viewBox="0 0 40 40" className={className} aria-hidden="true">
       <defs>
         <linearGradient id="gflogo" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stopColor="#6dcff6" />
-          <stop offset="100%" stopColor="#1a7abf" />
+          <stop offset="0%" stopColor="#27AAE1" />
+          <stop offset="100%" stopColor="#0082C6" />
         </linearGradient>
       </defs>
-      <path d="M20 4 L36 12 L36 28 L20 36 L4 28 L4 12 Z" fill="none" stroke="url(#gflogo)" strokeWidth="1.5" />
+      {/* Forme signature : arrondi haut-droit + bas-gauche */}
+      <path
+        d="M4 4 L32 4 Q36 4 36 8 L36 36 L8 36 Q4 36 4 32 Z"
+        fill="none"
+        stroke="url(#gflogo)"
+        strokeWidth="1.8"
+      />
       <path d="M14 14 h10 v3 h-7 v3 h6 v3 h-6 v6 h-3 z" fill="url(#gflogo)" />
-      <path d="M26 14 h2.5 v16 h-2.5 z M22 22 h6 v2.5 h-6 z" fill="url(#gflogo)" opacity="0.85" />
+      <path d="M26 14 h2.5 v16 h-2.5 z M22 22 h6 v2.5 h-6 z" fill="#DDDB00" />
     </svg>
   );
 }
 
 const LINKS = [
-  { to: "/", label: "Accueil" },
-  { to: "/mission", label: "Mission" },
-  { to: "/reseau", label: "Réseau" },
-  { to: "/services", label: "Services" },
-  { to: "/actualites", label: "Actualités" },
-  { to: "/gouvernance", label: "Gouvernance" },
-  { to: "/investisseurs", label: "Investisseurs" },
+  { href: "#accueil", label: "Accueil" },
+  { href: "#ambitions", label: "Ambitions" },
+  { href: "#backbone", label: "Backbone" },
+  { href: "#actualites", label: "Actualités" },
+  { href: "#gouvernance", label: "Gouvernance" },
+  { href: "#investisseurs", label: "Investissez" },
 ] as const;
 
 export function Nav() {
@@ -41,47 +46,45 @@ export function Nav() {
 
   return (
     <nav
-      className="fixed top-0 left-0 right-0 z-50 h-[76px] flex items-center justify-between px-6 md:px-14 transition-all"
+      className="fixed top-0 left-0 right-0 z-50 h-[72px] flex items-center justify-between px-6 md:px-10 transition-all"
       style={{
-        background: scrolled ? "rgba(6,13,22,0.96)" : "rgba(6,13,22,0.88)",
-        backdropFilter: "blur(22px)",
-        borderBottom: "1px solid rgba(58,174,224,0.1)",
+        background: scrolled ? "rgba(2,3,102,0.96)" : "rgba(2,3,102,0.88)",
+        backdropFilter: "blur(20px)",
+        borderBottom: "1px solid rgba(39,170,225,0.18)",
       }}
     >
-      <Link to="/" className="flex items-center gap-3">
+      <Link to="/" hash="accueil" className="flex items-center gap-3">
         <Logo />
         <div className="leading-tight">
-          <div className="font-display font-extrabold text-[17px] tracking-[0.05em] text-white">
+          <div className="font-display font-bold text-[16px] tracking-[0.04em] text-white">
             GABON FIBER SA
           </div>
-          <div className="font-mono text-[9px] tracking-[0.18em] uppercase text-blue-light">
-            Le carrefour des réseaux
+          <div className="font-mono text-[9px] tracking-[0.18em] uppercase" style={{ color: "#DDDB00" }}>
+            Connecter l'avenir
           </div>
         </div>
       </Link>
 
       <div className="hidden lg:flex items-center gap-7">
         {LINKS.map((l) => (
-          <Link
-            key={l.to}
-            to={l.to}
-            className="font-display font-semibold text-[13px] uppercase tracking-[0.08em] text-white/80 hover:text-blue-light transition-colors"
-            activeProps={{ className: "font-display font-semibold text-[13px] uppercase tracking-[0.08em] !text-blue-light" }}
-            activeOptions={{ exact: true }}
+          <a
+            key={l.href}
+            href={l.href}
+            className="font-display font-semibold text-[12.5px] uppercase tracking-[0.07em] text-white/85 hover:text-[#DDDB00] transition-colors"
           >
             {l.label}
-          </Link>
+          </a>
         ))}
-        <Link to="/contact" className="btn-p !py-2.5 !px-5 !text-[12px]">
+        <a href="#contact" className="btn-y !py-2.5 !px-5 !text-[12px]">
           Contact
-        </Link>
-        <div className="flex items-center gap-1 ml-2 border-l border-white/10 pl-4">
+        </a>
+        <div className="flex items-center gap-1 ml-1 border-l border-white/15 pl-4">
           {(["FR", "EN"] as const).map((l) => (
             <button
               key={l}
               onClick={() => setLang(l)}
               className={`font-mono text-[11px] tracking-wider px-1.5 py-0.5 transition-colors ${
-                lang === l ? "text-blue-light" : "text-white/40 hover:text-white"
+                lang === l ? "text-[#DDDB00]" : "text-white/40 hover:text-white"
               }`}
             >
               {l}
@@ -101,20 +104,21 @@ export function Nav() {
       </button>
 
       {open && (
-        <div className="lg:hidden absolute top-[76px] left-0 right-0 bg-navy-deep border-b border-blue-light/10 px-6 py-6 flex flex-col gap-4">
+        <div className="lg:hidden absolute top-[72px] left-0 right-0 px-6 py-6 flex flex-col gap-4"
+             style={{ background: "rgba(2,3,102,0.98)", borderBottom: "1px solid rgba(39,170,225,0.18)" }}>
           {LINKS.map((l) => (
-            <Link
-              key={l.to}
-              to={l.to}
+            <a
+              key={l.href}
+              href={l.href}
               onClick={() => setOpen(false)}
-              className="font-display font-semibold text-sm uppercase tracking-[0.08em] text-white"
+              className="font-display font-semibold text-sm uppercase tracking-[0.07em] text-white"
             >
               {l.label}
-            </Link>
+            </a>
           ))}
-          <Link to="/contact" onClick={() => setOpen(false)} className="btn-p mt-2 self-start">
+          <a href="#contact" onClick={() => setOpen(false)} className="btn-y mt-2 self-start">
             Contact
-          </Link>
+          </a>
         </div>
       )}
     </nav>

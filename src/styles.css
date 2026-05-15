@@ -2,14 +2,14 @@
 @source "../src";
 @import "tw-animate-css";
 
-@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;600;700;800;900&family=Barlow:wght@300;400;500;600&family=DM+Mono:wght@300;400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap');
 
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
-  --radius-sm: 2px;
-  --radius-md: 3px;
-  --radius-lg: 4px;
+  --radius-sm: 0px;
+  --radius-md: 0px;
+  --radius-lg: 0px;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -30,67 +30,98 @@
   --color-input: var(--input);
   --color-ring: var(--ring);
 
-  --color-blue-deep: #0a4f7e;
-  --color-blue-mid: #1a7abf;
-  --color-blue-light: #3aaee0;
-  --color-blue-sky: #6dcff6;
-  --color-slate-ink: #1e2d3d;
-  --color-slate-light: #4a5a6b;
-  --color-gray-warm: #8fa3b1;
-  --color-gray-line: #dde8ef;
-  --color-off-white: #f4f8fb;
-  --color-ink-black: #0a0f14;
-  --color-navy-deep: #060d16;
-  --color-active: #27ae60;
-  --color-gold: #c9a84c;
+  /* GABON FIBER SA — palette officielle */
+  --color-gf-blue:    #0082C6;
+  --color-gf-sky:     #27AAE1;
+  --color-gf-pale:    #65AEE0;
+  --color-gf-navy:    #020366;
+  --color-gf-gray:    #969EAA;
+  --color-gf-slate:   #536B79;
+  --color-gf-green:   #59BE98;
+  --color-gf-yellow:  #DDDB00;
+  --color-gf-light:   #f0f7ff;
 
-  --font-display: 'Barlow Condensed', sans-serif;
-  --font-body: 'Barlow', sans-serif;
+  /* Aliases pour compatibilité */
+  --color-blue-deep: #020366;
+  --color-blue-mid: #0082C6;
+  --color-blue-light: #27AAE1;
+  --color-blue-sky: #65AEE0;
+  --color-slate-ink: #020366;
+  --color-slate-light: #536B79;
+  --color-gray-warm: #969EAA;
+  --color-gray-line: #dde8ef;
+  --color-off-white: #f0f7ff;
+  --color-ink-black: #020366;
+  --color-navy-deep: #020366;
+  --color-active: #59BE98;
+  --color-gold: #DDDB00;
+
+  --font-display: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --font-body: Arial, 'Helvetica Neue', Helvetica, sans-serif;
+  --font-condensed: 'Barlow Condensed', 'Helvetica Neue', Arial, sans-serif;
   --font-mono: 'DM Mono', monospace;
 }
 
 :root {
-  --radius: 3px;
-  --background: #0a0f14;
-  --foreground: #ffffff;
-  --card: #0d1822;
-  --card-foreground: #ffffff;
-  --popover: #0d1822;
-  --popover-foreground: #ffffff;
-  --primary: #1a7abf;
+  --radius: 0px;
+  --background: #ffffff;
+  --foreground: #020366;
+  --card: #ffffff;
+  --card-foreground: #020366;
+  --popover: #ffffff;
+  --popover-foreground: #020366;
+  --primary: #0082C6;
   --primary-foreground: #ffffff;
-  --secondary: #1e2d3d;
+  --secondary: #020366;
   --secondary-foreground: #ffffff;
-  --muted: #1e2d3d;
-  --muted-foreground: #8fa3b1;
-  --accent: #3aaee0;
-  --accent-foreground: #0a0f14;
+  --muted: #f0f7ff;
+  --muted-foreground: #536B79;
+  --accent: #DDDB00;
+  --accent-foreground: #020366;
   --destructive: #ef4444;
   --destructive-foreground: #ffffff;
-  --border: rgba(58,174,224,0.15);
-  --input: rgba(58,174,224,0.2);
-  --ring: #3aaee0;
+  --border: rgba(0,130,198,0.15);
+  --input: rgba(0,130,198,0.2);
+  --ring: #0082C6;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 @layer base {
   * { border-color: var(--color-border); }
   body {
-    background: var(--color-ink-black);
-    color: #fff;
+    background: #ffffff;
+    color: var(--color-gf-navy);
     font-family: var(--font-body);
     font-weight: 400;
     -webkit-font-smoothing: antialiased;
   }
-  h1,h2,h3,h4,h5,h6 { font-family: var(--font-display); font-weight: 800; letter-spacing: -0.01em; }
+  h1,h2,h3,h4,h5,h6 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+  /* Offset pour la navbar fixe sur les ancres */
+  section[id] { scroll-margin-top: 80px; }
 }
 
 @layer components {
+  /* === FORME SIGNATURE GABON FIBER : arrondi haut-droit + bas-gauche === */
+  .gf-shape       { border-radius: 0 24px 0 24px; }
+  .gf-shape-lg    { border-radius: 0 32px 0 32px; }
+  .gf-shape-xl    { border-radius: 0 48px 0 48px; }
+  .gf-shape-btn   { border-radius: 0 14px 0 14px; }
+  .gf-shape-badge { border-radius: 0 10px 0 10px; }
+
+  /* === LABELS / TITRES === */
   .s-label {
     font-family: var(--font-mono);
-    font-size: 10px;
-    letter-spacing: 0.24em;
+    font-size: 11px;
+    letter-spacing: 0.22em;
     text-transform: uppercase;
-    color: var(--color-blue-light);
+    color: var(--color-gf-yellow);
     display: inline-flex;
     align-items: center;
     gap: 12px;
@@ -99,38 +130,72 @@
     content: "";
     width: 28px;
     height: 1px;
-    background: var(--color-blue-light);
+    background: var(--color-gf-yellow);
   }
+  .s-label.dark { color: var(--color-gf-blue); }
+  .s-label.dark::before { background: var(--color-gf-blue); }
+
   .s-title {
-    font-family: var(--font-display);
+    font-family: var(--font-condensed);
     font-weight: 800;
     text-transform: uppercase;
     line-height: 0.95;
     letter-spacing: -0.01em;
   }
-  .s-title em { font-style: normal; color: var(--color-blue-light); }
+  .s-title em {
+    font-style: normal;
+    color: var(--color-gf-yellow);
+  }
   .s-body {
     font-family: var(--font-body);
-    font-weight: 300;
-    font-size: 15.5px;
-    line-height: 1.85;
-    color: var(--color-gray-warm);
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.75;
+    color: rgba(255,255,255,0.78);
   }
-  .btn-p {
+  .s-body.dark { color: var(--color-gf-slate); }
+
+  /* === BOUTONS === */
+  .btn-y {
     display: inline-flex; align-items: center; gap: 10px;
     padding: 14px 28px;
-    background: var(--color-blue-mid);
+    background: var(--color-gf-yellow);
+    color: var(--color-gf-navy);
+    font-family: var(--font-display);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-size: 13px;
+    border-radius: 0 14px 0 14px;
+    border: 1px solid var(--color-gf-yellow);
+    transition: all 0.3s cubic-bezier(.25,.46,.45,.94);
+    cursor: pointer;
+  }
+  .btn-y:hover {
+    background: #fff;
+    border-color: #fff;
+    transform: translateY(-2px);
+  }
+  .btn-b {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 14px 28px;
+    background: var(--color-gf-blue);
     color: #fff;
     font-family: var(--font-display);
     font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.06em;
     font-size: 13px;
-    border-radius: 3px;
-    transition: all 0.3s cubic-bezier(.25,.46,.45,.94);
-    border: 1px solid var(--color-blue-mid);
+    border-radius: 0 14px 0 14px;
+    border: 1px solid var(--color-gf-blue);
+    transition: all 0.3s;
+    cursor: pointer;
   }
-  .btn-p:hover { background: var(--color-blue-deep); border-color: var(--color-blue-deep); transform: translateY(-2px); }
+  .btn-b:hover {
+    background: var(--color-gf-navy);
+    border-color: var(--color-gf-navy);
+    transform: translateY(-2px);
+  }
   .btn-g {
     display: inline-flex; align-items: center; gap: 10px;
     padding: 14px 28px;
@@ -139,28 +204,31 @@
     font-family: var(--font-display);
     font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.06em;
     font-size: 13px;
-    border-radius: 3px;
-    border: 1px solid rgba(255,255,255,0.25);
+    border-radius: 0 14px 0 14px;
+    border: 1px solid rgba(255,255,255,0.4);
     transition: all 0.3s;
+    cursor: pointer;
   }
-  .btn-g:hover { border-color: var(--color-blue-light); color: var(--color-blue-light); }
-  .btn-on-light {
-    background: var(--color-ink-black);
-    color: #fff;
-    border-color: var(--color-ink-black);
-  }
-  .btn-on-light:hover { background: var(--color-blue-deep); border-color: var(--color-blue-deep); }
+  .btn-g:hover { border-color: var(--color-gf-yellow); color: var(--color-gf-yellow); }
 
+  /* Compat avec anciennes classes */
+  .btn-p { @apply btn-b; }
+  .btn-on-light { background: var(--color-gf-navy); color: #fff; border-color: var(--color-gf-navy); }
+  .btn-on-light:hover { background: var(--color-gf-blue); border-color: var(--color-gf-blue); }
+
+  /* === REVEAL === */
   .reveal { opacity: 0; transform: translateY(40px); transition: opacity .8s ease, transform .8s ease; }
   .reveal.in { opacity: 1; transform: translateY(0); }
   .reveal.d1 { transition-delay: .1s; }
   .reveal.d2 { transition-delay: .2s; }
   .reveal.d3 { transition-delay: .3s; }
   .reveal.d4 { transition-delay: .4s; }
+  .reveal.d5 { transition-delay: .5s; }
 }
 
+/* === TICKER === */
 @keyframes ticker {
   0% { transform: translateX(0); }
   100% { transform: translateX(-50%); }
@@ -172,3 +240,42 @@
   50% { opacity: .5; transform: scale(1.4); }
 }
 .pulse-dot { animation: pulse-dot 1.6s ease-in-out infinite; }
+
+/* === HERO ANIMÉ — fibres lumineuses === */
+.hero-bg-animated {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(160deg, #020366 0%, #003e8a 45%, #0082C6 100%);
+  overflow: hidden;
+}
+.hero-bg-animated::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 20% 30%, rgba(39,170,225,0.25), transparent 40%),
+    radial-gradient(circle at 80% 70%, rgba(221,219,0,0.10), transparent 45%);
+  pointer-events: none;
+}
+.fiber-line {
+  position: absolute;
+  height: 1px;
+  width: 100%;
+  background: linear-gradient(90deg, transparent, #27AAE1, #DDDB00, transparent);
+  animation: fiberFlow linear infinite;
+  opacity: 0;
+}
+@keyframes fiberFlow {
+  0%   { opacity: 0; transform: translateX(-100%); }
+  10%  { opacity: 0.7; }
+  90%  { opacity: 0.7; }
+  100% { opacity: 0; transform: translateX(100%); }
+}
+
+/* Compteur animé */
+.counter-num {
+  font-family: var(--font-condensed);
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+}
