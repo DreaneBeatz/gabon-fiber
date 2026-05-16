@@ -2,8 +2,6 @@
 @source "../src";
 @import "tw-animate-css";
 
-@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;600;700;800;900&family=Barlow:wght@300;400;500;600&family=DM+Mono:wght@300;400;500&display=swap');
-
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
@@ -30,59 +28,81 @@
   --color-input: var(--input);
   --color-ring: var(--ring);
 
-  --color-blue-deep: #0a4f7e;
-  --color-blue-mid: #1a7abf;
-  --color-blue-light: #3aaee0;
-  --color-blue-sky: #6dcff6;
-  --color-slate-ink: #1e2d3d;
-  --color-slate-light: #4a5a6b;
-  --color-gray-warm: #8fa3b1;
-  --color-gray-line: #dde8ef;
-  --color-off-white: #f4f8fb;
-  --color-ink-black: #0a0f14;
-  --color-navy-deep: #060d16;
-  --color-active: #27ae60;
-  --color-gold: #c9a84c;
+  /* Official Gabon Fiber SA palette */
+  --color-gf-blue:    #0082C6;
+  --color-gf-sky:     #27AAE1;
+  --color-gf-pale:    #65AEE0;
+  --color-gf-navy:    #020366;
+  --color-gf-gray:    #969EAA;
+  --color-gf-slate:   #536B79;
+  --color-gf-green:   #59BE98;
+  --color-gf-yellow:  #DDDB00;
 
-  --font-display: 'Barlow Condensed', sans-serif;
-  --font-body: 'Barlow', sans-serif;
+  /* Legacy aliases kept for any leftover usage */
+  --color-blue-deep:  #020366;
+  --color-blue-mid:   #0082C6;
+  --color-blue-light: #27AAE1;
+  --color-blue-sky:   #65AEE0;
+  --color-slate-ink:  #1a2330;
+  --color-slate-light: #536B79;
+  --color-gray-warm:  #969EAA;
+  --color-gray-line:  #e3eaf2;
+  --color-off-white:  #f4f8fc;
+  --color-ink-black:  #020366;
+  --color-navy-deep:  #010234;
+  --color-active:     #59BE98;
+  --color-gold:       #DDDB00;
+
+  --font-display: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --font-headline: 'Barlow Condensed', 'Helvetica Neue', sans-serif;
+  --font-body: 'Inter', Arial, sans-serif;
   --font-mono: 'DM Mono', monospace;
 }
 
 :root {
   --radius: 3px;
-  --background: #0a0f14;
+  --background: #020366;
   --foreground: #ffffff;
-  --card: #0d1822;
+  --card: #0a0d5c;
   --card-foreground: #ffffff;
-  --popover: #0d1822;
+  --popover: #0a0d5c;
   --popover-foreground: #ffffff;
-  --primary: #1a7abf;
+  --primary: #0082C6;
   --primary-foreground: #ffffff;
-  --secondary: #1e2d3d;
+  --secondary: #536B79;
   --secondary-foreground: #ffffff;
-  --muted: #1e2d3d;
-  --muted-foreground: #8fa3b1;
-  --accent: #3aaee0;
-  --accent-foreground: #0a0f14;
+  --muted: #1a2330;
+  --muted-foreground: #969EAA;
+  --accent: #DDDB00;
+  --accent-foreground: #020366;
   --destructive: #ef4444;
   --destructive-foreground: #ffffff;
-  --border: rgba(58,174,224,0.15);
-  --input: rgba(58,174,224,0.2);
-  --ring: #3aaee0;
+  --border: rgba(39,170,225,0.18);
+  --input: rgba(39,170,225,0.22);
+  --ring: #27AAE1;
 }
+
+html { scroll-behavior: smooth; }
+html, body { scroll-padding-top: 80px; }
 
 @layer base {
   * { border-color: var(--color-border); }
   body {
-    background: var(--color-ink-black);
+    background: #020366;
     color: #fff;
     font-family: var(--font-body);
     font-weight: 400;
     -webkit-font-smoothing: antialiased;
   }
-  h1,h2,h3,h4,h5,h6 { font-family: var(--font-display); font-weight: 800; letter-spacing: -0.01em; }
+  h1,h2,h3,h4,h5,h6 { font-family: var(--font-headline); font-weight: 800; letter-spacing: -0.005em; }
 }
+
+/* ============ Gabon Fiber signature shape (logo-inspired) ============ */
+.gf-shape    { border-radius: 0 20px 0 20px; }
+.gf-shape-lg { border-radius: 0 32px 0 32px; }
+.gf-shape-md { border-radius: 0 24px 0 24px; }
+.gf-shape-sm { border-radius: 0 14px 0 14px; }
+.gf-shape-xs { border-radius: 0 10px 0 10px; }
 
 @layer components {
   .s-label {
@@ -90,68 +110,83 @@
     font-size: 10px;
     letter-spacing: 0.24em;
     text-transform: uppercase;
-    color: var(--color-blue-light);
+    color: var(--color-gf-sky);
     display: inline-flex;
     align-items: center;
     gap: 12px;
   }
-  .s-label::before {
-    content: "";
-    width: 28px;
-    height: 1px;
-    background: var(--color-blue-light);
-  }
+  .s-label::before { content: ""; width: 28px; height: 1px; background: var(--color-gf-sky); }
   .s-title {
-    font-family: var(--font-display);
+    font-family: var(--font-headline);
     font-weight: 800;
     text-transform: uppercase;
     line-height: 0.95;
     letter-spacing: -0.01em;
   }
-  .s-title em { font-style: normal; color: var(--color-blue-light); }
+  .s-title em { font-style: normal; color: var(--color-gf-yellow); }
   .s-body {
     font-family: var(--font-body);
-    font-weight: 300;
+    font-weight: 400;
     font-size: 15.5px;
-    line-height: 1.85;
-    color: var(--color-gray-warm);
+    line-height: 1.75;
+    color: rgba(255,255,255,0.78);
   }
+
+  /* CTA principal jaune */
+  .btn-y {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 14px 28px;
+    background: var(--color-gf-yellow);
+    color: var(--color-gf-navy);
+    font-family: var(--font-headline);
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: 13px;
+    border-radius: 0 14px 0 14px;
+    transition: all 0.3s cubic-bezier(.25,.46,.45,.94);
+    border: 1px solid var(--color-gf-yellow);
+  }
+  .btn-y:hover { background: #f5f300; transform: translateY(-2px); box-shadow: 0 10px 30px -10px rgba(221,219,0,0.5); }
+
   .btn-p {
     display: inline-flex; align-items: center; gap: 10px;
     padding: 14px 28px;
-    background: var(--color-blue-mid);
+    background: var(--color-gf-blue);
     color: #fff;
-    font-family: var(--font-display);
+    font-family: var(--font-headline);
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.08em;
     font-size: 13px;
-    border-radius: 3px;
+    border-radius: 0 14px 0 14px;
     transition: all 0.3s cubic-bezier(.25,.46,.45,.94);
-    border: 1px solid var(--color-blue-mid);
+    border: 1px solid var(--color-gf-blue);
   }
-  .btn-p:hover { background: var(--color-blue-deep); border-color: var(--color-blue-deep); transform: translateY(-2px); }
+  .btn-p:hover { background: #006aa3; border-color: #006aa3; transform: translateY(-2px); }
+
   .btn-g {
     display: inline-flex; align-items: center; gap: 10px;
     padding: 14px 28px;
     background: transparent;
     color: #fff;
-    font-family: var(--font-display);
+    font-family: var(--font-headline);
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.08em;
     font-size: 13px;
-    border-radius: 3px;
-    border: 1px solid rgba(255,255,255,0.25);
+    border-radius: 0 14px 0 14px;
+    border: 1px solid rgba(255,255,255,0.3);
     transition: all 0.3s;
   }
-  .btn-g:hover { border-color: var(--color-blue-light); color: var(--color-blue-light); }
+  .btn-g:hover { border-color: var(--color-gf-yellow); color: var(--color-gf-yellow); }
+
   .btn-on-light {
-    background: var(--color-ink-black);
+    background: var(--color-gf-navy);
     color: #fff;
-    border-color: var(--color-ink-black);
+    border-color: var(--color-gf-navy);
   }
-  .btn-on-light:hover { background: var(--color-blue-deep); border-color: var(--color-blue-deep); }
+  .btn-on-light:hover { background: var(--color-gf-blue); border-color: var(--color-gf-blue); }
 
   .reveal { opacity: 0; transform: translateY(40px); transition: opacity .8s ease, transform .8s ease; }
   .reveal.in { opacity: 1; transform: translateY(0); }
@@ -161,6 +196,7 @@
   .reveal.d4 { transition-delay: .4s; }
 }
 
+/* Ticker */
 @keyframes ticker {
   0% { transform: translateX(0); }
   100% { transform: translateX(-50%); }
@@ -172,3 +208,29 @@
   50% { opacity: .5; transform: scale(1.4); }
 }
 .pulse-dot { animation: pulse-dot 1.6s ease-in-out infinite; }
+
+/* ============ Hero fiber-line animation ============ */
+.hero-bg-animated {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse at 20% 20%, rgba(39,170,225,0.25), transparent 50%),
+    radial-gradient(ellipse at 80% 80%, rgba(0,130,198,0.25), transparent 55%),
+    linear-gradient(160deg, #010234 0%, #020366 40%, #003d6a 100%);
+  overflow: hidden;
+}
+.fiber-line {
+  position: absolute;
+  height: 1px;
+  width: 60%;
+  left: -60%;
+  background: linear-gradient(90deg, transparent, #27AAE1 40%, #DDDB00 70%, transparent);
+  animation: fiberFlow linear infinite;
+  opacity: 0;
+  filter: drop-shadow(0 0 4px rgba(39,170,225,0.7));
+}
+@keyframes fiberFlow {
+  0%   { opacity: 0; transform: translateX(0); }
+  10%  { opacity: 0.85; }
+  90%  { opacity: 0.85; }
+  100% { opacity: 0; transform: translateX(260vw); }
+}

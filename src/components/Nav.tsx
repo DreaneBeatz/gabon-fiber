@@ -1,20 +1,18 @@
-import { Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import logoUrl from "@/assets/logo-gabon-fiber.png";
 
-export function Logo({ className = "h-12 w-auto" }: { className?: string }) {
+export function Logo({ className = "h-11 w-auto" }: { className?: string }) {
   return <img src={logoUrl} alt="Gabon Fiber SA" className={className} />;
 }
 
 const LINKS = [
-  { to: "/", label: "Accueil" },
-  { to: "/mission", label: "Mission" },
-  { to: "/reseau", label: "Réseau" },
-  { to: "/services", label: "Services" },
-  { to: "/actualites", label: "Actualités" },
-  { to: "/gouvernance", label: "Gouvernance" },
-  { to: "/investisseurs", label: "Investisseurs" },
-] as const;
+  { href: "#accueil", label: "Accueil" },
+  { href: "#ambitions", label: "Ambitions" },
+  { href: "#backbone", label: "Backbone" },
+  { href: "#actualites", label: "Actualités" },
+  { href: "#gouvernance", label: "Gouvernance" },
+  { href: "#investisseurs", label: "Investissez" },
+];
 
 export function Nav() {
   const [scrolled, setScrolled] = useState(false);
@@ -30,39 +28,38 @@ export function Nav() {
 
   return (
     <nav
-      className="fixed top-0 left-0 right-0 z-50 h-[76px] flex items-center justify-between px-6 md:px-14 transition-all"
+      className="fixed top-0 left-0 right-0 z-50 h-[76px] flex items-center justify-between px-6 md:px-10 transition-all"
       style={{
-        background: scrolled ? "rgba(6,13,22,0.96)" : "rgba(6,13,22,0.88)",
-        backdropFilter: "blur(22px)",
-        borderBottom: "1px solid rgba(58,174,224,0.1)",
+        background: scrolled ? "rgba(2,3,102,0.96)" : "rgba(2,3,102,0.82)",
+        backdropFilter: "blur(20px)",
+        borderBottom: "1px solid rgba(39,170,225,0.15)",
       }}
     >
-      <Link to="/" className="flex items-center">
-        <Logo />
-      </Link>
+      <a href="#accueil" className="flex items-center">
+        <Logo className="h-12 w-auto bg-white/95 px-2 py-1 gf-shape-sm" />
+      </a>
 
-      <div className="hidden lg:flex items-center gap-7">
+      <div className="hidden lg:flex items-center gap-6">
         {LINKS.map((l) => (
-          <Link
-            key={l.to}
-            to={l.to}
-            className="font-display font-semibold text-[13px] uppercase tracking-[0.08em] text-white/80 hover:text-blue-light transition-colors"
-            activeProps={{ className: "font-display font-semibold text-[13px] uppercase tracking-[0.08em] !text-blue-light" }}
-            activeOptions={{ exact: true }}
+          <a
+            key={l.href}
+            href={l.href}
+            className="font-headline font-semibold text-[13px] uppercase tracking-[0.08em] text-white/85 hover:text-[#DDDB00] transition-colors"
+            style={{ fontFamily: "var(--font-headline)" }}
           >
             {l.label}
-          </Link>
+          </a>
         ))}
-        <Link to="/contact" className="btn-p !py-2.5 !px-5 !text-[12px]">
+        <a href="#contact" className="btn-y !py-2.5 !px-5 !text-[12px]">
           Contact
-        </Link>
-        <div className="flex items-center gap-1 ml-2 border-l border-white/10 pl-4">
+        </a>
+        <div className="flex items-center gap-1 ml-2 border-l border-white/15 pl-4">
           {(["FR", "EN"] as const).map((l) => (
             <button
               key={l}
               onClick={() => setLang(l)}
               className={`font-mono text-[11px] tracking-wider px-1.5 py-0.5 transition-colors ${
-                lang === l ? "text-blue-light" : "text-white/40 hover:text-white"
+                lang === l ? "text-[#DDDB00]" : "text-white/45 hover:text-white"
               }`}
             >
               {l}
@@ -71,31 +68,28 @@ export function Nav() {
         </div>
       </div>
 
-      <button
-        onClick={() => setOpen(!open)}
-        className="lg:hidden text-white p-2"
-        aria-label="Menu"
-      >
+      <button onClick={() => setOpen(!open)} className="lg:hidden text-white p-2" aria-label="Menu">
         <div className="w-6 h-0.5 bg-white mb-1.5" />
         <div className="w-6 h-0.5 bg-white mb-1.5" />
         <div className="w-4 h-0.5 bg-white" />
       </button>
 
       {open && (
-        <div className="lg:hidden absolute top-[76px] left-0 right-0 bg-navy-deep border-b border-blue-light/10 px-6 py-6 flex flex-col gap-4">
+        <div className="lg:hidden absolute top-[76px] left-0 right-0 bg-[#020366] border-b border-[#27AAE1]/20 px-6 py-6 flex flex-col gap-4">
           {LINKS.map((l) => (
-            <Link
-              key={l.to}
-              to={l.to}
+            <a
+              key={l.href}
+              href={l.href}
               onClick={() => setOpen(false)}
-              className="font-display font-semibold text-sm uppercase tracking-[0.08em] text-white"
+              className="font-headline font-semibold text-sm uppercase tracking-[0.08em] text-white"
+              style={{ fontFamily: "var(--font-headline)" }}
             >
               {l.label}
-            </Link>
+            </a>
           ))}
-          <Link to="/contact" onClick={() => setOpen(false)} className="btn-p mt-2 self-start">
+          <a href="#contact" onClick={() => setOpen(false)} className="btn-y mt-2 self-start">
             Contact
-          </Link>
+          </a>
         </div>
       )}
     </nav>
