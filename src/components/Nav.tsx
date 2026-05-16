@@ -40,16 +40,8 @@ export function Nav() {
         borderBottom: "1px solid rgba(58,174,224,0.1)",
       }}
     >
-      <Link to="/" className="flex items-center gap-3">
+      <Link to="/" className="flex items-center">
         <Logo />
-        <div className="leading-tight">
-          <div className="font-display font-extrabold text-[17px] tracking-[0.05em] text-white">
-            GABON FIBER SA
-          </div>
-          <div className="font-mono text-[9px] tracking-[0.18em] uppercase text-blue-light">
-            Le carrefour des réseaux
-          </div>
-        </div>
       </Link>
 
       <div className="hidden lg:flex items-center gap-7">
