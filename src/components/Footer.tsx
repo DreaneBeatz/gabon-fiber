@@ -7,11 +7,8 @@ export function Footer() {
       <div className="max-w-[1400px] mx-auto px-6 md:px-14 py-20">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
           <div>
-            <div className="flex items-center gap-3 mb-5">
-              <Logo />
-              <div className="font-display font-extrabold text-[15px] tracking-[0.05em] text-white">
-                GABON FIBER SA
-              </div>
+            <div className="mb-5">
+              <Logo className="h-14 w-auto bg-white/95 p-2 rounded" />
             </div>
             <p className="s-body !text-[13px] !leading-[1.7]">
               Opérateur de gros neutre du backbone fibre optique national. Successeur de la DSP Axione, au service de la souveraineté numérique du Gabon.
