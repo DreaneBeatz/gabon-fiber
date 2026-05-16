@@ -3,10 +3,7 @@ import { useEffect, useState } from "react";
 import logoUrl from "@/assets/logo-gabon-fiber.png";
 
 export function Logo({ className = "h-12 w-auto" }: { className?: string }) {
-  return (
-    <img src={logoUrl} alt="Gabon Fiber SA — Le carrefour des réseaux" className={className} />
-    
-  );
+  return <img src={logoUrl} alt="Gabon Fiber SA" className={className} />;
 }
 
 const LINKS = [
