@@ -1,596 +1,277 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
-import { PageWrap } from "@/components/PageBits";
-import { HeroAnimated } from "@/components/HeroAnimated";
-import { BackboneCounter } from "@/components/BackboneCounter";
-import { NewsPlaceholder } from "@/components/NewsPlaceholder";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { Ticker } from "@/components/Ticker";
+import { PageWrap } from "@/components/PageBits";
+import { GabonMap } from "@/components/GabonMap";
+import { IMG } from "@/lib/images";
 
 export const Route = createFileRoute("/")({
   component: Home,
   head: () => ({
     meta: [
-      { title: "Gabon Fiber SA — Connecter l'avenir" },
-      {
-        name: "description",
-        content:
-          "Opérateur de gros neutre du backbone fibre national du Gabon. 1 700 km existants, +1 650 km d'extensions, 3 350 km cible. Open access, souveraineté numérique.",
-      },
+      { title: "Gabon Fiber SA — Le Carrefour des Réseaux" },
+      { name: "description", content: "Opérateur de gros neutre du backbone fibre optique national. 3 350 km, accès ouvert, souveraineté numérique." },
     ],
   }),
 });
 
-const PILIERS = [
-  {
-    n: "01",
-    t: "Couverture Nationale",
-    d: "Connecter toutes les provinces du Gabon d'ici 2029.",
-  },
-  {
-    n: "02",
-    t: "Neutralité",
-    d: "Opérateur de gros exclusif, aucune offre retail, accès équitable.",
-  },
-  {
-    n: "03",
-    t: "Souveraineté Numérique",
-    d: "Infrastructure stratégique, biens de retour à l'État.",
-  },
-  {
-    n: "04",
-    t: "Financement Privé",
-    d: "PPP concessif, modèle bankable, TRI 16,9% actionnaire.",
-  },
+const STATS_HERO = [
+  { v: "3 350", u: "km de fibre" },
+  { v: "52", u: "Mds FCFA" },
+  { v: "16,9%", u: "TRI Actionnaire" },
+  { v: "99,9%", u: "SLA" },
 ];
 
-const FIN_KPIS = [
-  { v: "52 Mds FCFA", u: "Investissement total (~80 M€ HT)" },
-  { v: "13 Mds FCFA", u: "Fonds propres (25%)" },
-  { v: "31 Mds FCFA", u: "Dette institutionnelle (60%)" },
-  { v: "7,8 Mds FCFA", u: "Dons Global Gateway UE (15%)" },
-  { v: "14,6%", u: "TRI Projet" },
-  { v: "16,9%", u: "TRI Actionnaire (15–20 ans)" },
-  { v: "~45%", u: "EBITDA moyen cible" },
-  { v: "1 650 km", u: "Extensions à financer (4 ans)" },
+const MISSIONS = [
+  { n: "01", t: "Accès Ouvert", d: "Tarifs transparents, non-discrimination, équité opérateurs." },
+  { n: "02", t: "Souveraineté", d: "Biens de retour à l'État, contrôle ARCEP, infra nationale." },
+  { n: "03", t: "Service Public", d: "Couverture étendue, désenclavement numérique." },
+  { n: "04", t: "Financement Privé", d: "PPP concessif, 52 Mds FCFA, AFD/BEI/BDEAC." },
 ];
 
-const PROFILS = [
-  {
-    t: "Fonds de Private Equity",
-    d: "Le slot investisseur financier est ouvert pour un ticket de 4 à 6 milliards FCFA (30 à 40% du capital). TRI actionnaire de 16,9% sur 15 à 20 ans dans un secteur régulé à revenus récurrents.",
-    cta: "Demander le mémorandum",
-  },
-  {
-    t: "Banques d'Affaires",
-    d: "Nous recherchons un conseil financier pour accompagner la structuration de la levée, la négociation avec les bailleurs institutionnels et la mise en place du tour de table.",
-    cta: "Nous contacter",
-  },
-  {
-    t: "Institutions Financières (DFI / Multilatéraux)",
-    d: "AFD, BEI, BDEAC et institutions similaires peuvent intervenir sous forme de prêts concessionnels, garanties ou subventions. 60% du plan dédié à la dette institutionnelle.",
-    cta: "Nous contacter",
-  },
-  {
-    t: "Opérateurs Télécoms",
-    d: "Entrée au capital par apport en nature (fourreaux, équipements, droits de passage), sur le modèle Gabon Telecom (20–25% du capital). Engagements take-or-pay envisageables.",
-    cta: "Nous contacter",
-  },
-  {
-    t: "Institutions Publiques & Gouvernements",
-    d: "Partenariats publics-privés structurés, fonds dédiés à la connectivité ou mandats de financement à discuter avec les autorités mandataires.",
-    cta: "Nous contacter",
-  },
+const SERVICES = [
+  { n: "01", t: "Capacité & Transit", d: "Lambdas, Ethernet, IP transit haute disponibilité.", img: IMG.srv1 },
+  { n: "02", t: "Colocation / POPs", d: "Hébergement carrier-grade dans 10+ villes.", img: IMG.srv2 },
+  { n: "03", t: "Interconnexion", d: "SAT-3, ACE, MainOne, Gabon-IX.", img: IMG.srv3 },
+  { n: "04", t: "Services Gérés NOC", d: "Supervision 24/7, monitoring proactif.", img: IMG.srv4 },
+  { n: "05", t: "Qualité & SLA", d: "99,9% disponibilité, MTTR < 4h, pénalités.", img: IMG.srv5 },
+  { n: "06", t: "Partenariats", d: "Accords FAI, opérateurs, sous-régionaux.", img: IMG.srv6 },
 ];
 
-const ACTU = [
-  {
-    cat: "Institutionnel",
-    t: "Création officielle de Gabon Fiber SA",
-    d: "Date à confirmer",
-    ex: "Gabon Fiber SA est officiellement constituée en société anonyme de droit gabonais. La société est appelée à reprendre l'exploitation du backbone fibre national à l'expiration de la DSP Axione en novembre 2026.",
-  },
-  {
-    cat: "Gouvernance",
-    t: "Premier Conseil d'Administration de Gabon Fiber SA",
-    d: "Date à confirmer",
-    ex: "Le premier Conseil d'Administration s'est tenu à Libreville. Il a acté les premières orientations stratégiques et validé les grandes lignes du plan de développement du backbone national.",
-  },
-  {
-    cat: "Infrastructure",
-    t: "Visite du backbone fibre national par M. le Ministre",
-    d: "Date à confirmer",
-    ex: "M. le Ministre en charge du Numérique a effectué une visite des installations du backbone fibre national, accompagné de l'équipe de direction. Visite illustrant l'engagement de l'État dans l'infrastructure numérique.",
-  },
+const KPIS = [
+  { v: "3 350", u: "Km cible" },
+  { v: "52 Mds", u: "FCFA investis" },
+  { v: "~45%", u: "EBITDA moyen" },
+  { v: "16,9%", u: "TRI Actionnaire" },
 ];
 
-const SHARES = [
-  { n: "SPIN (État)", p: 35, c: "#0082C6" },
-  { n: "Gabon Télécom", p: 22, c: "#27AAE1" },
-  { n: "Private Equity", p: 35, c: "#65AEE0" },
-  { n: "Apport opérateur (GVA)", p: 5, c: "#59BE98" },
-  { n: "Axione (mgmt)", p: 3, c: "#969EAA" },
+const NEWS = [
+  { cat: "Institutionnel", t: "Gabon Fiber SA officiellement constituée", d: "Janv. 2025", img: IMG.news1 },
+  { cat: "Infrastructure", t: "Phase 1 : extension vers Mouila lancée", d: "Mars 2025", img: IMG.news2 },
+  { cat: "Finance", t: "52 Mds FCFA bouclés avec AFD, BEI et BDEAC", d: "Mai 2025", img: IMG.news3 },
 ];
 
 function Home() {
   return (
     <PageWrap>
-      <HeroAnimated />
-      <Ticker />
-
-      {/* === AMBITIONS === */}
-      <section id="ambitions" className="py-28" style={{ background: "#f0f7ff", color: "#020366" }}>
-        <div className="max-w-[1400px] mx-auto px-6 md:px-14">
-          <div className="grid lg:grid-cols-12 gap-10 mb-16">
-            <div className="lg:col-span-4 reveal">
-              <div className="s-label dark mb-5">Ambitions</div>
-              <h2 className="s-title text-5xl md:text-6xl">
-                Notre <em style={{ color: "#0082C6" }}>raison<br />d'être</em>
-              </h2>
-            </div>
-            <div className="lg:col-span-8 reveal d2">
-              <blockquote
-                className="gf-shape-lg p-10 md:p-12 relative"
-                style={{ background: "#fff", borderLeft: "4px solid #DDDB00" }}
-              >
-                <div
-                  className="absolute -top-6 left-8 font-display font-bold text-7xl leading-none"
-                  style={{ color: "#DDDB00" }}
-                >
-                  «
-                </div>
-                <p className="text-xl md:text-2xl leading-relaxed font-body" style={{ color: "#020366" }}>
-                  Opérer et développer le backbone national de la République Gabonaise en fibre optique, avec les principes
-                  d'<strong>opérateur de gros</strong>, de <strong>neutralité</strong> et de <strong>non-discrimination</strong>.
-                </p>
-              </blockquote>
+      {/* HERO */}
+      <section className="relative min-h-screen flex items-center pt-[140px] pb-20 overflow-hidden">
+        <div className="absolute inset-0">
+          <img src={IMG.heroHome} alt="" className="w-full h-full object-cover opacity-35" />
+          <div className="absolute inset-0 bg-gradient-to-r from-ink-black via-ink-black/85 to-ink-black/30" />
+          <div className="absolute inset-0 bg-gradient-to-t from-ink-black via-transparent to-transparent" />
+        </div>
+        <div className="relative max-w-[1400px] mx-auto px-6 md:px-14 w-full">
+          <div className="max-w-4xl">
+            <div className="s-label reveal mb-7">Opérateur de référence — Gabon</div>
+            <h1 className="s-title reveal d1 text-[clamp(56px,10vw,160px)] text-white mb-8">
+              Le <em>Carrefour</em><br />Des Réseaux
+            </h1>
+            <p className="s-body reveal d2 max-w-2xl mb-10 !text-[17px] !text-white/75">
+              Successeur de la DSP Axione, Gabon Fiber SA opère le backbone fibre national en mode wholesale exclusif. Neutralité, accès ouvert, souveraineté.
+            </p>
+            <div className="reveal d3 flex flex-wrap gap-4">
+              <Link to="/services" className="btn-p">Nos solutions →</Link>
+              <Link to="/investisseurs" className="btn-g">Investisseurs</Link>
             </div>
           </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {PILIERS.map((p, i) => (
-              <div
-                key={p.n}
-                className={`reveal d${i + 1} gf-shape p-8 transition-transform hover:-translate-y-1`}
-                style={{
-                  background: "#fff",
-                  border: "1px solid rgba(0,130,198,0.15)",
-                  boxShadow: "0 8px 24px -16px rgba(0,130,198,0.3)",
-                }}
-              >
-                <div
-                  className="font-mono text-[11px] tracking-[0.22em] mb-4"
-                  style={{ color: "#0082C6" }}
-                >
-                  — {p.n}
-                </div>
-                <h3 className="font-display font-bold text-xl uppercase mb-3" style={{ color: "#020366" }}>
-                  {p.t}
-                </h3>
-                <p className="text-[14px] leading-[1.7]" style={{ color: "#536B79" }}>
-                  {p.d}
-                </p>
+          <div className="reveal d4 grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 mt-20 max-w-4xl border-t border-white/10 pt-10">
+            {STATS_HERO.map((s) => (
+              <div key={s.u}>
+                <div className="font-display font-extrabold text-4xl md:text-5xl text-blue-light leading-none">{s.v}</div>
+                <div className="font-mono text-[11px] tracking-wider text-white/50 uppercase mt-2">{s.u}</div>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* === BACKBONE === */}
-      <section id="backbone" className="py-28" style={{ background: "#020366" }}>
-        <div className="max-w-[1400px] mx-auto px-6 md:px-14">
-          <div className="grid lg:grid-cols-2 gap-10 items-end mb-14">
-            <div className="reveal">
-              <div className="s-label mb-5">Backbone</div>
-              <h2 className="s-title text-5xl md:text-6xl text-white">
-                Du <em>backbone</em><br />à l'extension<br />nationale
-              </h2>
-            </div>
-            <p className="reveal d2 s-body">
-              1 700 km opérationnels aujourd'hui. +1 650 km en construction sur 4 phases pour atteindre <strong style={{ color: "#DDDB00" }}>3 350 km</strong> et désenclaver les zones intérieures.
-              Cliquez sur une phase pour voir le tracé et la projection en temps réel.
-            </p>
-          </div>
+      <Ticker />
 
-          <div className="reveal">
-            <BackboneCounter />
+      {/* MISSION STRIP */}
+      <section className="bg-navy-deep py-24">
+        <div className="max-w-[1400px] mx-auto px-6 md:px-14 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-px bg-blue-light/10">
+          {MISSIONS.map((m, i) => (
+            <div key={m.n} className={`reveal d${i + 1} bg-navy-deep p-10`}>
+              <div className="font-mono text-[11px] tracking-widest text-blue-light mb-5">— {m.n}</div>
+              <h3 className="font-display font-extrabold text-2xl uppercase text-white mb-3">{m.t}</h3>
+              <p className="s-body !text-[14px]">{m.d}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* WHO */}
+      <section className="bg-off-white text-slate-ink py-32">
+        <div className="max-w-[1400px] mx-auto px-6 md:px-14 grid lg:grid-cols-2 gap-16 items-center">
+          <div className="reveal relative">
+            <img src={IMG.about} alt="Data center" className="w-full aspect-[4/5] object-cover" />
+            <div className="absolute -bottom-6 -right-6 bg-blue-deep text-white p-6 max-w-[200px]">
+              <div className="font-mono text-[11px] tracking-widest text-blue-sky mb-1">2025</div>
+              <div className="font-display font-extrabold text-xl uppercase">Nouveau<br />Départ</div>
+            </div>
+          </div>
+          <div className="reveal d2">
+            <div className="s-label !text-blue-mid mb-6">Qui sommes-nous</div>
+            <h2 className="s-title text-5xl md:text-6xl !text-slate-ink mb-8">
+              Bâtir le<br /><em className="!text-blue-mid">Gabon Numérique</em>
+            </h2>
+            <p className="s-body !text-slate-light !text-base mb-5">
+              La DSP Axione s'achève en novembre 2026. Gabon Fiber SA prend le relais comme opérateur de gros neutre, propriétaire des extensions et exploitant du backbone existant via affermage.
+            </p>
+            <p className="s-body !text-slate-light !text-base mb-10">
+              Notre mission : connecter chaque région du pays, garantir l'équité d'accès aux opérateurs détaillants, et bâtir une infrastructure stratégique souveraine.
+            </p>
+            <div className="space-y-4">
+              {[
+                ["01", "Neutralité absolue", "Aucune offre retail, traitement équitable des FAI."],
+                ["02", "Extension nationale", "+1 650 km de fibre construits en 4 ans."],
+                ["03", "Rentabilité démontrée", "TRI 16,9% sur 15-20 ans, ~45% EBITDA."],
+              ].map(([n, t, d]) => (
+                <div key={n} className="flex gap-5 border-t border-gray-line pt-4">
+                  <div className="font-mono text-blue-mid text-sm">{n}</div>
+                  <div>
+                    <div className="font-display font-bold uppercase text-slate-ink">{t}</div>
+                    <div className="text-sm text-slate-light">{d}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
-      {/* === ACTUALITES === */}
-      <section id="actualites" className="py-28" style={{ background: "#fff", color: "#020366" }}>
+      {/* RESEAU PREVIEW */}
+      <section className="py-32" style={{ background: "#0d1822" }}>
+        <div className="max-w-[1400px] mx-auto px-6 md:px-14 grid lg:grid-cols-2 gap-16 items-center">
+          <div className="reveal">
+            <div className="s-label mb-6">Le réseau</div>
+            <h2 className="s-title text-5xl md:text-6xl text-white mb-8">
+              Du <em>backbone</em><br />à l'extension<br />nationale
+            </h2>
+            <p className="s-body mb-10">
+              1 700 km opérationnels aujourd'hui. +1 650 km en construction sur 4 phases pour atteindre 3 350 km et désenclaver les zones intérieures.
+            </p>
+            <div className="grid grid-cols-2 gap-8 mb-10">
+              {[
+                ["1 700", "km existants"],
+                ["+1 650", "km extensions"],
+                ["10+", "villes connectées"],
+                ["4 ans", "calendrier"],
+              ].map(([v, u]) => (
+                <div key={u}>
+                  <div className="font-display font-extrabold text-4xl text-blue-light leading-none">{v}</div>
+                  <div className="font-mono text-[11px] tracking-wider text-white/50 uppercase mt-2">{u}</div>
+                </div>
+              ))}
+            </div>
+            <Link to="/reseau" className="btn-p">Explorer le réseau →</Link>
+          </div>
+          <div className="reveal d2 bg-navy-deep p-8 border border-blue-light/15">
+            <GabonMap size="sm" />
+          </div>
+        </div>
+      </section>
+
+      {/* SERVICES PREVIEW */}
+      <section className="bg-off-white text-slate-ink py-32">
         <div className="max-w-[1400px] mx-auto px-6 md:px-14">
-          <div className="flex flex-wrap items-end justify-between gap-6 mb-14">
+          <div className="grid lg:grid-cols-2 gap-12 mb-16">
             <div className="reveal">
-              <div className="s-label dark mb-5">Actualités</div>
-              <h2 className="s-title text-5xl md:text-6xl">
-                Dernières <em style={{ color: "#0082C6" }}>nouvelles</em>
+              <div className="s-label !text-blue-mid mb-6">Catalogue</div>
+              <h2 className="s-title text-5xl md:text-6xl !text-slate-ink">
+                Wholesale<br /><em className="!text-blue-mid">exclusivement</em>
               </h2>
             </div>
+            <div className="reveal d2 flex items-end">
+              <p className="s-body !text-slate-light !text-base">
+                Gabon Fiber SA n'opère aucune offre retail. Notre catalogue est dédié aux opérateurs licenciés, FAI, institutionnels et grands comptes.
+              </p>
+            </div>
           </div>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            {ACTU.map((a, i) => (
-              <article
-                key={a.t}
-                className={`reveal d${i + 1} gf-shape overflow-hidden group cursor-pointer transition-transform hover:-translate-y-1`}
-                style={{ background: "#fff", border: "1px solid rgba(0,130,198,0.15)" }}
-              >
-                <div className="aspect-[4/3] overflow-hidden">
-                  <NewsPlaceholder category={a.cat} />
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-px bg-gray-line">
+            {SERVICES.map((s, i) => (
+              <div key={s.n} className={`reveal d${(i % 4) + 1} bg-white group hover:bg-off-white transition-colors`}>
+                <div className="aspect-[16/10] overflow-hidden">
+                  <img src={s.img} alt={s.t} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                 </div>
                 <div className="p-7">
-                  <div className="flex gap-4 mb-3">
-                    <span
-                      className="font-mono text-[10px] tracking-widest uppercase px-2 py-0.5 gf-shape-badge"
-                      style={{ background: "#DDDB00", color: "#020366" }}
-                    >
-                      {a.cat}
-                    </span>
-                    <span className="font-mono text-[10px] tracking-widest uppercase" style={{ color: "#536B79" }}>
-                      {a.d}
-                    </span>
-                  </div>
-                  <h3 className="font-display font-bold text-lg uppercase leading-tight mb-3" style={{ color: "#020366" }}>
-                    {a.t}
-                  </h3>
-                  <p className="text-[13.5px] leading-[1.65]" style={{ color: "#536B79" }}>
-                    {a.ex}
-                  </p>
+                  <div className="font-mono text-[11px] tracking-widest text-blue-mid mb-3">— {s.n}</div>
+                  <h3 className="font-display font-extrabold text-xl uppercase text-slate-ink mb-2">{s.t}</h3>
+                  <p className="text-sm text-slate-light leading-relaxed">{s.d}</p>
                 </div>
+              </div>
+            ))}
+          </div>
+          <div className="text-center mt-12">
+            <Link to="/services" className="btn-p btn-on-light">Toutes les offres →</Link>
+          </div>
+        </div>
+      </section>
+
+      {/* KPI BAR */}
+      <section className="py-28" style={{ background: "linear-gradient(135deg, #0a4f7e 0%, #1a7abf 100%)" }}>
+        <div className="max-w-[1400px] mx-auto px-6 md:px-14">
+          <div className="reveal max-w-2xl mb-14">
+            <div className="s-label !text-white/70 mb-5">Performance</div>
+            <h2 className="s-title text-4xl md:text-5xl text-white">Chiffres clés du projet</h2>
+          </div>
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-12">
+            {KPIS.map((k, i) => (
+              <div key={k.u} className={`reveal d${i + 1}`}>
+                <div className="font-display font-extrabold text-6xl md:text-7xl text-white leading-none">{k.v}</div>
+                <div className="font-mono text-[12px] tracking-wider text-white/70 uppercase mt-3">{k.u}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA SPLIT */}
+      <section className="grid lg:grid-cols-2">
+        <Link to="/services" className="relative bg-navy-deep p-14 md:p-20 min-h-[400px] flex flex-col justify-end overflow-hidden group">
+          <img src={IMG.ctaA} alt="" className="absolute inset-0 w-full h-full object-cover opacity-15 group-hover:opacity-25 transition-opacity" />
+          <div className="relative">
+            <div className="s-label mb-6">Pour opérateurs & FAI</div>
+            <h3 className="s-title text-4xl md:text-5xl text-white mb-6">Demandez<br />un <em>devis</em></h3>
+            <span className="font-display font-bold uppercase text-blue-light tracking-widest text-sm">Découvrir nos services →</span>
+          </div>
+        </Link>
+        <Link to="/investisseurs" className="relative bg-blue-deep p-14 md:p-20 min-h-[400px] flex flex-col justify-end overflow-hidden group">
+          <img src={IMG.ctaB} alt="" className="absolute inset-0 w-full h-full object-cover opacity-15 group-hover:opacity-25 transition-opacity" />
+          <div className="relative">
+            <div className="s-label !text-blue-sky mb-6">Pour investisseurs</div>
+            <h3 className="s-title text-4xl md:text-5xl text-white mb-6">TRI <em className="!text-blue-sky">16,9%</em><br />sur 15-20 ans</h3>
+            <span className="font-display font-bold uppercase text-blue-sky tracking-widest text-sm">Espace investisseurs →</span>
+          </div>
+        </Link>
+      </section>
+
+      {/* NEWS */}
+      <section className="bg-off-white text-slate-ink py-32">
+        <div className="max-w-[1400px] mx-auto px-6 md:px-14">
+          <div className="flex flex-wrap items-end justify-between mb-14 gap-6">
+            <div className="reveal">
+              <div className="s-label !text-blue-mid mb-5">Actualités</div>
+              <h2 className="s-title text-5xl !text-slate-ink">Dernières <em className="!text-blue-mid">nouvelles</em></h2>
+            </div>
+            <Link to="/actualites" className="btn-p btn-on-light">Toutes les actus →</Link>
+          </div>
+          <div className="grid md:grid-cols-3 gap-8">
+            {NEWS.map((n, i) => (
+              <article key={n.t} className={`reveal d${i + 1} group cursor-pointer`}>
+                <div className="aspect-[4/3] overflow-hidden mb-5">
+                  <img src={n.img} alt={n.t} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                </div>
+                <div className="flex gap-4 mb-3">
+                  <span className="font-mono text-[10px] tracking-widest text-blue-mid uppercase">{n.cat}</span>
+                  <span className="font-mono text-[10px] tracking-widest text-slate-light uppercase">{n.d}</span>
+                </div>
+                <h3 className="font-display font-extrabold text-2xl uppercase text-slate-ink leading-tight group-hover:text-blue-mid transition-colors">{n.t}</h3>
               </article>
             ))}
           </div>
         </div>
       </section>
-
-      {/* === GOUVERNANCE === */}
-      <section id="gouvernance" className="py-28" style={{ background: "#f0f7ff", color: "#020366" }}>
-        <div className="max-w-[1400px] mx-auto px-6 md:px-14">
-          <div className="grid lg:grid-cols-12 gap-10">
-            <div className="lg:col-span-5 reveal">
-              <div className="s-label dark mb-5">Gouvernance</div>
-              <h2 className="s-title text-5xl md:text-6xl mb-6">
-                Structure du <em style={{ color: "#0082C6" }}>capital</em>
-              </h2>
-              <p className="text-[15.5px] leading-[1.75] mb-6" style={{ color: "#536B79" }}>
-                Société anonyme de droit gabonais, Gabon Fiber SA repose sur un partenariat public-privé associant
-                l'État, l'opérateur historique, des investisseurs financiers et des opérateurs techniques.
-              </p>
-              <a href="#investisseurs" className="btn-b">Investissez avec nous →</a>
-            </div>
-
-            <div className="lg:col-span-7 reveal d2 space-y-4">
-              {SHARES.map((s) => (
-                <div key={s.n} className="gf-shape p-5" style={{ background: "#fff", border: "1px solid rgba(0,130,198,0.12)" }}>
-                  <div className="flex justify-between items-baseline mb-2">
-                    <div className="font-display font-bold uppercase text-[14px] tracking-wide" style={{ color: "#020366" }}>
-                      {s.n}
-                    </div>
-                    <div className="font-display font-bold text-2xl" style={{ color: s.c }}>
-                      {s.p}%
-                    </div>
-                  </div>
-                  <div className="h-2 w-full bg-[#dde8ef] gf-shape-badge overflow-hidden">
-                    <div
-                      className="h-full transition-all duration-1000"
-                      style={{ width: `${s.p * 2.5}%`, background: s.c, maxWidth: "100%" }}
-                    />
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* === INVESTISSEURS === */}
-      <section id="investisseurs" className="py-28 relative overflow-hidden" style={{ background: "#020366" }}>
-        <div
-          className="absolute inset-0 opacity-30 pointer-events-none"
-          style={{
-            background:
-              "radial-gradient(circle at 80% 20%, rgba(221,219,0,0.18), transparent 50%), radial-gradient(circle at 20% 80%, rgba(39,170,225,0.25), transparent 50%)",
-          }}
-        />
-        <div className="relative max-w-[1400px] mx-auto px-6 md:px-14">
-          <div className="text-center mb-16 reveal">
-            <div className="s-label mb-5 justify-center inline-flex">Investissez</div>
-            <h2 className="s-title text-5xl md:text-7xl text-white mb-5">
-              Investissez dans<br /><em>Gabon Fiber SA</em>
-            </h2>
-            <p className="text-lg text-white/75 max-w-2xl mx-auto">
-              Une opportunité unique d'infrastructure en Afrique centrale.
-            </p>
-          </div>
-
-          {/* Données financières */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-5 mb-20">
-            {FIN_KPIS.map((k, i) => (
-              <div
-                key={k.u}
-                className={`reveal d${(i % 4) + 1} gf-shape p-6`}
-                style={{
-                  background: "rgba(255,255,255,0.05)",
-                  border: "1px solid rgba(39,170,225,0.2)",
-                }}
-              >
-                <div
-                  className="font-display font-bold text-2xl md:text-3xl leading-tight mb-2"
-                  style={{ color: "#DDDB00" }}
-                >
-                  {k.v}
-                </div>
-                <div className="font-mono text-[10.5px] tracking-wider text-white/65 uppercase leading-snug">
-                  {k.u}
-                </div>
-              </div>
-            ))}
-          </div>
-
-          {/* Profils investisseurs */}
-          <div className="mb-20">
-            <h3 className="s-title text-3xl md:text-4xl text-white mb-10 text-center">
-              Profils <em>investisseurs</em>
-            </h3>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {PROFILS.map((p, i) => (
-                <div
-                  key={p.t}
-                  className={`reveal d${(i % 4) + 1} gf-shape-lg p-7 flex flex-col`}
-                  style={{
-                    background: "rgba(255,255,255,0.04)",
-                    border: "1px solid rgba(39,170,225,0.22)",
-                  }}
-                >
-                  <div
-                    className="font-mono text-[10px] tracking-[0.22em] uppercase mb-3"
-                    style={{ color: "#DDDB00" }}
-                  >
-                    Profil {String(i + 1).padStart(2, "0")}
-                  </div>
-                  <h4 className="font-display font-bold text-xl uppercase text-white mb-4 leading-tight">
-                    {p.t}
-                  </h4>
-                  <p className="text-[14px] leading-[1.65] text-white/75 mb-6 flex-1">{p.d}</p>
-                  <a
-                    href="mailto:invest@gabonfibersa.ga"
-                    className="font-display font-bold text-[12px] uppercase tracking-[0.08em] hover:opacity-80 transition-opacity"
-                    style={{ color: "#DDDB00" }}
-                  >
-                    {p.cta} →
-                  </a>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Bloc NDA */}
-          <div
-            className="reveal gf-shape-xl p-10 md:p-14 max-w-5xl mx-auto"
-            style={{
-              background: "linear-gradient(135deg, rgba(39,170,225,0.12), rgba(2,3,102,0.6))",
-              border: "1px solid #DDDB00",
-            }}
-          >
-            <div className="font-mono text-[11px] tracking-[0.22em] uppercase mb-4" style={{ color: "#DDDB00" }}>
-              Processus confidentiel
-            </div>
-            <h3 className="s-title text-3xl md:text-4xl text-white mb-6">
-              Comment accéder au mémorandum<br />d'<em>information ?</em>
-            </h3>
-            <ol className="space-y-4 mb-8 text-white/85 text-[15px] leading-[1.7]">
-              <li className="flex gap-4">
-                <span className="font-display font-bold text-2xl flex-shrink-0" style={{ color: "#DDDB00" }}>01</span>
-                <span>Manifestez-vous en envoyant un email à <a href="mailto:invest@gabonfibersa.ga" className="underline" style={{ color: "#DDDB00" }}>invest@gabonfibersa.ga</a> en précisant votre profil.</span>
-              </li>
-              <li className="flex gap-4">
-                <span className="font-display font-bold text-2xl flex-shrink-0" style={{ color: "#DDDB00" }}>02</span>
-                <span>Gabon Fiber SA vous adressera un NDA (accord de non-divulgation) standard à signer.</span>
-              </li>
-              <li className="flex gap-4">
-                <span className="font-display font-bold text-2xl flex-shrink-0" style={{ color: "#DDDB00" }}>03</span>
-                <span>Après signature, vous recevrez le mémorandum d'information complet (IM).</span>
-              </li>
-            </ol>
-            <p className="text-[13px] italic text-white/60 mb-6">
-              Aucun document confidentiel n'est partagé avant signature du NDA.
-            </p>
-            <a href="mailto:invest@gabonfibersa.ga" className="btn-y">
-              invest@gabonfibersa.ga →
-            </a>
-          </div>
-        </div>
-      </section>
-
-      {/* === CONTACT === */}
-      <ContactSection />
     </PageWrap>
-  );
-}
-
-function ContactSection() {
-  const [tab, setTab] = useState<"general" | "investor">("general");
-
-  return (
-    <section id="contact" className="py-28" style={{ background: "#fff", color: "#020366" }}>
-      <div className="max-w-[1400px] mx-auto px-6 md:px-14">
-        <div className="grid lg:grid-cols-12 gap-10 mb-12">
-          <div className="lg:col-span-5 reveal">
-            <div className="s-label dark mb-5">Contact</div>
-            <h2 className="s-title text-5xl md:text-6xl mb-6">
-              Échangeons<br /><em style={{ color: "#0082C6" }}>ensemble</em>
-            </h2>
-            <p className="text-[15px] leading-[1.7] mb-8" style={{ color: "#536B79" }}>
-              Choisissez le formulaire adapté à votre demande. Les sollicitations investisseurs sont traitées en priorité, sous 48h.
-            </p>
-            <div className="space-y-3 text-[14px]" style={{ color: "#020366" }}>
-              <div><strong>Adresse :</strong> Libreville, Gabon</div>
-              <div>
-                <strong>Email général :</strong>{" "}
-                <a href="mailto:contact@gabonfibersa.ga" className="hover:underline" style={{ color: "#0082C6" }}>
-                  contact@gabonfibersa.ga
-                </a>
-              </div>
-              <div>
-                <strong>Email investisseurs :</strong>{" "}
-                <a href="mailto:invest@gabonfibersa.ga" className="hover:underline font-bold" style={{ color: "#DDDB00", background: "#020366", padding: "2px 8px", borderRadius: "0 8px 0 8px" }}>
-                  invest@gabonfibersa.ga
-                </a>
-              </div>
-              <div><strong>Téléphone :</strong> 011 24 76 15</div>
-            </div>
-          </div>
-
-          <div className="lg:col-span-7 reveal d2">
-            <div className="flex gap-2 mb-6">
-              <button
-                onClick={() => setTab("general")}
-                className={`gf-shape-btn px-5 py-2.5 font-display font-bold text-[12px] uppercase tracking-wider transition-all border ${
-                  tab === "general"
-                    ? "text-white"
-                    : "text-[#536B79] border-[#dde8ef] hover:border-[#0082C6]"
-                }`}
-                style={{
-                  background: tab === "general" ? "#0082C6" : "#fff",
-                  borderColor: tab === "general" ? "#0082C6" : undefined,
-                }}
-              >
-                Contact général
-              </button>
-              <button
-                onClick={() => setTab("investor")}
-                className={`gf-shape-btn px-5 py-2.5 font-display font-bold text-[12px] uppercase tracking-wider transition-all border ${
-                  tab === "investor"
-                    ? "text-[#020366]"
-                    : "text-[#536B79] border-[#dde8ef] hover:border-[#DDDB00]"
-                }`}
-                style={{
-                  background: tab === "investor" ? "#DDDB00" : "#fff",
-                  borderColor: tab === "investor" ? "#DDDB00" : undefined,
-                }}
-              >
-                Investisseurs
-              </button>
-            </div>
-
-            {tab === "general" ? <GeneralForm /> : <InvestorForm />}
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function Field({ label, children }: { label: string; children: React.ReactNode }) {
-  return (
-    <label className="block">
-      <span className="block font-mono text-[10.5px] tracking-[0.18em] uppercase mb-2" style={{ color: "#536B79" }}>
-        {label}
-      </span>
-      {children}
-    </label>
-  );
-}
-
-const inputCls =
-  "w-full gf-shape-btn px-4 py-3 bg-white border border-[#dde8ef] text-[14px] text-[#020366] focus:border-[#0082C6] focus:outline-none transition-colors";
-
-function GeneralForm() {
-  const [sent, setSent] = useState(false);
-  return (
-    <form
-      onSubmit={(e) => {
-        e.preventDefault();
-        setSent(true);
-      }}
-      className="gf-shape-lg p-8 grid grid-cols-1 md:grid-cols-2 gap-5"
-      style={{ background: "#f0f7ff", border: "1px solid rgba(0,130,198,0.15)" }}
-    >
-      <Field label="Prénom"><input required className={inputCls} /></Field>
-      <Field label="Nom"><input required className={inputCls} /></Field>
-      <Field label="Société"><input className={inputCls} /></Field>
-      <Field label="Email"><input type="email" required className={inputCls} /></Field>
-      <Field label="Profil">
-        <select className={inputCls}>
-          <option>Opérateur / FAI</option>
-          <option>Institutionnel</option>
-          <option>Presse</option>
-          <option>Autre</option>
-        </select>
-      </Field>
-      <Field label="Objet"><input className={inputCls} /></Field>
-      <div className="md:col-span-2">
-        <Field label="Message"><textarea rows={5} required className={inputCls} /></Field>
-      </div>
-      <div className="md:col-span-2 flex items-center justify-between flex-wrap gap-4">
-        {sent && <div className="font-mono text-[12px] uppercase tracking-wider" style={{ color: "#59BE98" }}>✓ Message bien reçu</div>}
-        <button type="submit" className="btn-b ml-auto">Envoyer →</button>
-      </div>
-    </form>
-  );
-}
-
-function InvestorForm() {
-  const [sent, setSent] = useState(false);
-  return (
-    <form
-      onSubmit={(e) => {
-        e.preventDefault();
-        setSent(true);
-      }}
-      className="gf-shape-lg p-8"
-      style={{ background: "#020366", border: "1px solid #DDDB00" }}
-    >
-      <h3 className="font-display font-bold text-xl uppercase text-white mb-2">
-        Demande d'information investisseurs
-      </h3>
-      <p className="text-[13px] mb-6" style={{ color: "rgba(255,255,255,0.7)" }}>
-        Votre demande sera traitée sous 48h. Un NDA vous sera envoyé avant tout partage de document. Email :{" "}
-        <a href="mailto:invest@gabonfibersa.ga" className="underline" style={{ color: "#DDDB00" }}>
-          invest@gabonfibersa.ga
-        </a>
-      </p>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-        <DarkField label="Prénom"><input required className={darkInputCls} /></DarkField>
-        <DarkField label="Nom"><input required className={darkInputCls} /></DarkField>
-        <DarkField label="Société / Fonds"><input required className={darkInputCls} /></DarkField>
-        <DarkField label="Email"><input type="email" required className={darkInputCls} /></DarkField>
-        <DarkField label="Téléphone"><input className={darkInputCls} /></DarkField>
-        <DarkField label="Type d'investisseur">
-          <select className={darkInputCls}>
-            <option>Fonds de Private Equity</option>
-            <option>Banque d'affaires</option>
-            <option>DFI / Multilatéral</option>
-            <option>Opérateur télécom</option>
-            <option>Institution publique</option>
-            <option>Autre</option>
-          </select>
-        </DarkField>
-        <div className="md:col-span-2">
-          <DarkField label="Message"><textarea rows={5} required className={darkInputCls} /></DarkField>
-        </div>
-        <div className="md:col-span-2 flex items-center justify-between flex-wrap gap-4">
-          {sent && <div className="font-mono text-[12px] uppercase tracking-wider" style={{ color: "#DDDB00" }}>✓ Demande bien reçue</div>}
-          <button type="submit" className="btn-y ml-auto">Envoyer ma demande →</button>
-        </div>
-      </div>
-    </form>
-  );
-}
-
-const darkInputCls =
-  "w-full gf-shape-btn px-4 py-3 text-[14px] text-white focus:border-[#DDDB00] focus:outline-none transition-colors";
-
-function DarkField({ label, children }: { label: string; children: React.ReactNode }) {
-  return (
-    <label className="block">
-      <span className="block font-mono text-[10.5px] tracking-[0.18em] uppercase mb-2" style={{ color: "rgba(221,219,0,0.85)" }}>
-        {label}
-      </span>
-      <div style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(39,170,225,0.25)", borderRadius: "0 14px 0 14px" }}>
-        {children}
-      </div>
-    </label>
   );
 }

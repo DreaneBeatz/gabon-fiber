@@ -10,8 +10,15 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as ServicesRouteImport } from './routes/services'
+import { Route as ReseauRouteImport } from './routes/reseau'
+import { Route as MissionRouteImport } from './routes/mission'
 import { Route as MentionsLegalesRouteImport } from './routes/mentions-legales'
+import { Route as InvestisseursRouteImport } from './routes/investisseurs'
+import { Route as GouvernanceRouteImport } from './routes/gouvernance'
+import { Route as ContactRouteImport } from './routes/contact'
 import { Route as ConfidentialiteRouteImport } from './routes/confidentialite'
+import { Route as ActualitesRouteImport } from './routes/actualites'
 import { Route as AccessibiliteRouteImport } from './routes/accessibilite'
 import { Route as IndexRouteImport } from './routes/index'
 
@@ -20,14 +27,49 @@ const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   path: '/sitemap.xml',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ServicesRoute = ServicesRouteImport.update({
+  id: '/services',
+  path: '/services',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ReseauRoute = ReseauRouteImport.update({
+  id: '/reseau',
+  path: '/reseau',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MissionRoute = MissionRouteImport.update({
+  id: '/mission',
+  path: '/mission',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const MentionsLegalesRoute = MentionsLegalesRouteImport.update({
   id: '/mentions-legales',
   path: '/mentions-legales',
   getParentRoute: () => rootRouteImport,
 } as any)
+const InvestisseursRoute = InvestisseursRouteImport.update({
+  id: '/investisseurs',
+  path: '/investisseurs',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GouvernanceRoute = GouvernanceRouteImport.update({
+  id: '/gouvernance',
+  path: '/gouvernance',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ConfidentialiteRoute = ConfidentialiteRouteImport.update({
   id: '/confidentialite',
   path: '/confidentialite',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ActualitesRoute = ActualitesRouteImport.update({
+  id: '/actualites',
+  path: '/actualites',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AccessibiliteRoute = AccessibiliteRouteImport.update({
@@ -44,23 +86,44 @@ const IndexRoute = IndexRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/accessibilite': typeof AccessibiliteRoute
+  '/actualites': typeof ActualitesRoute
   '/confidentialite': typeof ConfidentialiteRoute
+  '/contact': typeof ContactRoute
+  '/gouvernance': typeof GouvernanceRoute
+  '/investisseurs': typeof InvestisseursRoute
   '/mentions-legales': typeof MentionsLegalesRoute
+  '/mission': typeof MissionRoute
+  '/reseau': typeof ReseauRoute
+  '/services': typeof ServicesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/accessibilite': typeof AccessibiliteRoute
+  '/actualites': typeof ActualitesRoute
   '/confidentialite': typeof ConfidentialiteRoute
+  '/contact': typeof ContactRoute
+  '/gouvernance': typeof GouvernanceRoute
+  '/investisseurs': typeof InvestisseursRoute
   '/mentions-legales': typeof MentionsLegalesRoute
+  '/mission': typeof MissionRoute
+  '/reseau': typeof ReseauRoute
+  '/services': typeof ServicesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/accessibilite': typeof AccessibiliteRoute
+  '/actualites': typeof ActualitesRoute
   '/confidentialite': typeof ConfidentialiteRoute
+  '/contact': typeof ContactRoute
+  '/gouvernance': typeof GouvernanceRoute
+  '/investisseurs': typeof InvestisseursRoute
   '/mentions-legales': typeof MentionsLegalesRoute
+  '/mission': typeof MissionRoute
+  '/reseau': typeof ReseauRoute
+  '/services': typeof ServicesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
 }
 export interface FileRouteTypes {
@@ -68,30 +131,58 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/accessibilite'
+    | '/actualites'
     | '/confidentialite'
+    | '/contact'
+    | '/gouvernance'
+    | '/investisseurs'
     | '/mentions-legales'
+    | '/mission'
+    | '/reseau'
+    | '/services'
     | '/sitemap.xml'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/accessibilite'
+    | '/actualites'
     | '/confidentialite'
+    | '/contact'
+    | '/gouvernance'
+    | '/investisseurs'
     | '/mentions-legales'
+    | '/mission'
+    | '/reseau'
+    | '/services'
     | '/sitemap.xml'
   id:
     | '__root__'
     | '/'
     | '/accessibilite'
+    | '/actualites'
     | '/confidentialite'
+    | '/contact'
+    | '/gouvernance'
+    | '/investisseurs'
     | '/mentions-legales'
+    | '/mission'
+    | '/reseau'
+    | '/services'
     | '/sitemap.xml'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AccessibiliteRoute: typeof AccessibiliteRoute
+  ActualitesRoute: typeof ActualitesRoute
   ConfidentialiteRoute: typeof ConfidentialiteRoute
+  ContactRoute: typeof ContactRoute
+  GouvernanceRoute: typeof GouvernanceRoute
+  InvestisseursRoute: typeof InvestisseursRoute
   MentionsLegalesRoute: typeof MentionsLegalesRoute
+  MissionRoute: typeof MissionRoute
+  ReseauRoute: typeof ReseauRoute
+  ServicesRoute: typeof ServicesRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
 }
 
@@ -104,6 +195,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SitemapDotxmlRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/services': {
+      id: '/services'
+      path: '/services'
+      fullPath: '/services'
+      preLoaderRoute: typeof ServicesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/reseau': {
+      id: '/reseau'
+      path: '/reseau'
+      fullPath: '/reseau'
+      preLoaderRoute: typeof ReseauRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/mission': {
+      id: '/mission'
+      path: '/mission'
+      fullPath: '/mission'
+      preLoaderRoute: typeof MissionRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/mentions-legales': {
       id: '/mentions-legales'
       path: '/mentions-legales'
@@ -111,11 +223,39 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MentionsLegalesRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/investisseurs': {
+      id: '/investisseurs'
+      path: '/investisseurs'
+      fullPath: '/investisseurs'
+      preLoaderRoute: typeof InvestisseursRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/gouvernance': {
+      id: '/gouvernance'
+      path: '/gouvernance'
+      fullPath: '/gouvernance'
+      preLoaderRoute: typeof GouvernanceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/confidentialite': {
       id: '/confidentialite'
       path: '/confidentialite'
       fullPath: '/confidentialite'
       preLoaderRoute: typeof ConfidentialiteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/actualites': {
+      id: '/actualites'
+      path: '/actualites'
+      fullPath: '/actualites'
+      preLoaderRoute: typeof ActualitesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/accessibilite': {
@@ -138,8 +278,15 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AccessibiliteRoute: AccessibiliteRoute,
+  ActualitesRoute: ActualitesRoute,
   ConfidentialiteRoute: ConfidentialiteRoute,
+  ContactRoute: ContactRoute,
+  GouvernanceRoute: GouvernanceRoute,
+  InvestisseursRoute: InvestisseursRoute,
   MentionsLegalesRoute: MentionsLegalesRoute,
+  MissionRoute: MissionRoute,
+  ReseauRoute: ReseauRoute,
+  ServicesRoute: ServicesRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
 }
 export const routeTree = rootRouteImport
