@@ -1,18 +1,10 @@
 import { Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
+import logoUrl from "@/assets/logo-gabon-fiber.png";
 
-export function Logo({ className = "w-9 h-9" }: { className?: string }) {
+export function Logo({ className = "h-12 w-auto" }: { className?: string }) {
   return (
-    <svg viewBox="0 0 40 40" className={className} aria-hidden="true">
-      <defs>
-        <linearGradient id="gflogo" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stopColor="#6dcff6" />
-          <stop offset="100%" stopColor="#1a7abf" />
-        </linearGradient>
-      </defs>
-      <path d="M20 4 L36 12 L36 28 L20 36 L4 28 L4 12 Z" fill="none" stroke="url(#gflogo)" strokeWidth="1.5" />
-      <path d="M14 14 h10 v3 h-7 v3 h6 v3 h-6 v6 h-3 z" fill="url(#gflogo)" />
-      <path d="M26 14 h2.5 v16 h-2.5 z M22 22 h6 v2.5 h-6 z" fill="url(#gflogo)" opacity="0.85" />
+    <img src={logoUrl} alt="Gabon Fiber SA — Le carrefour des réseaux" className={className} />
     </svg>
   );
 }
