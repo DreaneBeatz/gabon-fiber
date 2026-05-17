@@ -6,7 +6,7 @@ const TICKER_WORDS = [
   "3 350 km",
   "Open Access",
   "PPP Concessif",
-  "Le Carrefour des Réseaux",
+  "Connecter l'avenir",
 ];
 
 export function Ticker() {

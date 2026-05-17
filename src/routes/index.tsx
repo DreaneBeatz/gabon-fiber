@@ -10,7 +10,7 @@ export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       { title: "Gabon Fiber SA — Connecter l'avenir" },
-      { name: "description", content: "Opérateur de gros neutre du backbone fibre optique national. 1 700 km existants, 3 350 km à terme. Open Access, souveraineté numérique." },
+      { name: "description", content: "Opérateur neutre de référence du backbone national gabonais en fibre optique. Souveraineté numérique, wholesale exclusif, 1 700 km existants, 3 350 km à terme." },
     ],
   }),
 });
@@ -52,10 +52,10 @@ function Hero() {
             Connecter l'avenir
           </div>
           <h1 className="s-title reveal d1 text-[clamp(52px,9.5vw,150px)] text-white mb-8">
-            Le <em>Carrefour</em><br />Des Réseaux
+            Gabon Fiber<br /><em>SA</em>
           </h1>
           <p className="s-body reveal d2 max-w-2xl mb-10 !text-[17px] !text-white/80">
-            Successeur de la DSP Axione, Gabon Fiber SA opère le backbone fibre national en mode wholesale exclusif. Neutralité, accès ouvert, souveraineté numérique.
+            Gabon Fiber SA est le futur opérateur neutre de référence du backbone national gabonais en fibre optique — un projet stratégique né de la volonté de l'État de garantir sa souveraineté numérique et de doter le Gabon d'une infrastructure de connectivité digne des standards internationaux.
           </p>
           <div className="reveal d3 flex flex-wrap gap-4">
             <a href="#investisseurs" className="btn-y">Espace investisseurs →</a>
