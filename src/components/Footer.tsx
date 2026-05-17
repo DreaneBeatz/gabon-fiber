@@ -70,7 +70,7 @@ export function Footer() {
             © {new Date().getFullYear()} Gabon Fiber SA — Tous droits réservés
           </div>
           <div className="font-mono text-[11px] tracking-wider text-white/40 uppercase">
-            Le carrefour des réseaux
+            Connecter l'avenir
           </div>
         </div>
       </div>
