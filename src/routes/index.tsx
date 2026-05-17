@@ -52,7 +52,7 @@ function Hero() {
             Connecter l'avenir
           </div>
           <h1 className="s-title reveal d1 text-[clamp(52px,9.5vw,150px)] text-white mb-8">
-            Gabon Fiber<br /><em>SA</em>
+            Gabon Fiber <em>SA</em>
           </h1>
           <p className="s-body reveal d2 max-w-2xl mb-10 !text-[17px] !text-white/80">
             Gabon Fiber SA est le futur opérateur neutre de référence du backbone national gabonais en fibre optique — un projet stratégique né de la volonté de l'État de garantir sa souveraineté numérique et de doter le Gabon d'une infrastructure de connectivité digne des standards internationaux.
