@@ -48,7 +48,7 @@ export function Nav() {
             className="font-headline font-semibold text-[13px] uppercase tracking-[0.08em] text-white/85 hover:text-[#DDDB00] transition-colors"
             style={{ fontFamily: "var(--font-headline)" }}
           >
-            {l.label}
+            {t(l.key)}
           </a>
         ))}
         <a href="#contact" className="btn-y !py-2.5 !px-5 !text-[12px]">
