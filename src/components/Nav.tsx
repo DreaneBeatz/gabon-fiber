@@ -52,8 +52,16 @@ export function Nav() {
           </a>
         ))}
         <a href="#contact" className="btn-y !py-2.5 !px-5 !text-[12px]">
-          Contact
+          {t("nav.contact")}
         </a>
+        <button
+          onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+          aria-label="Toggle theme"
+          title={theme === "dark" ? "Mode clair" : "Mode sombre"}
+          className="ml-2 w-9 h-9 flex items-center justify-center text-white/80 hover:text-[#DDDB00] border border-white/15 gf-shape-xs transition-colors"
+        >
+          {theme === "dark" ? "☀" : "☾"}
+        </button>
         <div className="flex items-center gap-1 ml-2 border-l border-white/15 pl-4">
           {(["FR", "EN"] as const).map((l) => (
             <button
