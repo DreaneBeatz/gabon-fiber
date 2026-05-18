@@ -327,7 +327,7 @@ function Gouvernance() {
                   <span className="font-headline font-bold uppercase text-white tracking-wider" style={{ fontFamily: "var(--font-headline)" }}>
                     {s.name} {s.open && <span className="text-[#DDDB00] text-[11px] ml-2">(SLOT OUVERT)</span>}
                   </span>
-                  <span className="font-mono text-[#DDDB00] font-bold">{s.pct}%</span>
+                  <span className="font-mono text-[#DDDB00] font-bold">{s.note ?? `${s.pct}%`}</span>
                 </div>
                 <div className="h-2 bg-white/10 gf-shape-xs overflow-hidden">
                   <div
