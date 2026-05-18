@@ -97,7 +97,7 @@ export function Nav() {
             </a>
           ))}
           <a href="#contact" onClick={() => setOpen(false)} className="btn-y mt-2 self-start">
-            Contact
+            {t("nav.contact")}
           </a>
         </div>
       )}
