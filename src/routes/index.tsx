@@ -299,11 +299,10 @@ function Actualites() {
 
 /* ---------------- GOUVERNANCE ---------------- */
 const SHARES = [
-  { name: "SPIN", pct: 25, color: "#0082C6" },
-  { name: "Gabon Télécom", pct: 22, color: "#27AAE1" },
-  { name: "Private Equity (slot ouvert)", pct: 30, color: "#DDDB00", open: true },
-  { name: "GVA", pct: 13, color: "#65AEE0" },
-  { name: "Axione", pct: 10, color: "#59BE98" },
+  { name: "État élargi", pct: 35, color: "#0082C6", note: "≤ 35%" },
+  { name: "Opérateurs télécoms", pct: 25, color: "#27AAE1", note: "20–30%" },
+  { name: "Investisseurs financiers PE", pct: 35, color: "#DDDB00", note: "30–40%", open: true },
+  { name: "Partenaires industriels", pct: 10, color: "#59BE98", note: "10% ou plus" },
 ];
 
 function Gouvernance() {
@@ -314,10 +313,10 @@ function Gouvernance() {
           <div className="lg:col-span-5 reveal">
             <div className="s-label !text-[#DDDB00] mb-6">Gouvernance</div>
             <h2 className="s-title text-5xl md:text-6xl text-white mb-6">
-              Structure du <em>capital</em>
+              Structure du <em>capital cible</em>
             </h2>
             <p className="s-body mb-8">
-              Tour de table en cours de finalisation. Le slot Private Equity reste ouvert pour un ticket de 4 à 6 milliards FCFA (30 à 40% du capital).
+              Structure indicative en cours de finalisation. Le slot Investisseurs financiers PE reste ouvert pour un ticket représentant 30 à 40% du capital.
             </p>
             <a href="#investisseurs" className="btn-y">Investissez →</a>
           </div>
