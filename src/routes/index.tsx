@@ -425,23 +425,23 @@ function Investisseurs() {
           </div>
         </div>
 
-        {/* NDA */}
+        {/* Processus d'engagement */}
         <div className="gf-shape-lg bg-[#020366] text-white p-10 md:p-14 reveal">
           <div className="grid md:grid-cols-12 gap-10 items-center">
             <div className="md:col-span-8">
-              <div className="s-label !text-[#DDDB00] mb-5">Processus NDA</div>
+              <div className="s-label !text-[#DDDB00] mb-5">Processus d'engagement</div>
               <h3 className="s-title text-3xl md:text-4xl text-white mb-6">
                 Comment accéder au <em>mémorandum d'information</em> ?
               </h3>
               <ol className="space-y-3 text-white/85 text-[15px]">
-                <li><span className="font-mono text-[#DDDB00] mr-3">01</span>Manifestez-vous en envoyant un email à <a href="mailto:invest@gabonfibersa.ga" className="text-[#DDDB00] underline">invest@gabonfibersa.ga</a> en précisant votre profil.</li>
-                <li><span className="font-mono text-[#DDDB00] mr-3">02</span>Gabon Fiber SA vous adressera un NDA standard à signer.</li>
-                <li><span className="font-mono text-[#DDDB00] mr-3">03</span>Après signature, vous recevrez le mémorandum d'information complet (IM).</li>
+                <li><span className="font-mono text-[#DDDB00] mr-3">01</span>Manifestez-vous en envoyant un email à <a href="mailto:invest@gabon-fiber.ga" className="text-[#DDDB00] underline">invest@gabon-fiber.ga</a> en précisant votre profil.</li>
+                <li><span className="font-mono text-[#DDDB00] mr-3">02</span>Gabon Fiber vous adressera la documentation nécessaire à la mise en place du cadre de discussion.</li>
+                <li><span className="font-mono text-[#DDDB00] mr-3">03</span>Une fois le cadre de discussion posé, la documentation nécessaire vous sera transmise.</li>
               </ol>
-              <p className="mt-6 text-xs text-white/55 italic">Aucun document confidentiel n'est partagé avant signature du NDA.</p>
+              <p className="mt-6 text-xs text-white/55 italic">Aucun document confidentiel n'est partagé avant la mise en place du cadre de discussion.</p>
             </div>
             <div className="md:col-span-4 flex flex-col items-start gap-4">
-              <a href="mailto:invest@gabonfibersa.ga" className="btn-y w-full justify-center">invest@gabonfibersa.ga</a>
+              <a href="mailto:invest@gabon-fiber.ga" className="btn-y w-full justify-center">invest@gabon-fiber.ga</a>
               <a href="#contact" className="btn-g w-full justify-center">Formulaire investisseur</a>
             </div>
           </div>
