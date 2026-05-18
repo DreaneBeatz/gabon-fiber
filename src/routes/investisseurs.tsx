@@ -33,6 +33,45 @@ const MODELS = [
   { t: "Opportunités de sortie", items: ["Cession secondaire entre PE (Y5+)", "IPO BVMAC potentielle (Y8+)", "Rachat partiel par État", "Distribution dividendes récurrents"] },
 ];
 
+const INVESTOR_PROFILES = [
+  {
+    title: "Institutions financières de développement",
+    description: "Le déploiement du BNG s'inscrit pleinement dans les mandats d'inclusion numérique, de connectivité régionale et de diversification économique portés par les IFD opérant en Afrique subsaharienne. La structure concessionnaire garantit un ancrage souverain, tandis que les principes d'open access ouvrent la voie à un marché concurrentiel bénéficiant à l'ensemble de la population. Un co-financement mixte public-privé est envisageable, avec éligibilité aux instruments de garantie.",
+  },
+  {
+    title: "Fonds de private equity et de croissance",
+    description: "Le slot investisseur financier est actuellement ouvert pour un ticket de 4 à 6 milliards FCFA (30 à 40% du capital). Gabon Fiber SA offre un TRI actionnaire de 16,9% sur 15 à 20 ans dans un secteur régulé à revenus récurrents. La position de monopole de facto sur le backbone, les synergies avec les opérateurs régionaux dans le cadre de potentiels groupement d'intérêt économique et les relais de croissance liés aux extensions planifiées créent des leviers de création de valeur sur l'horizon typique d'un fonds PE.",
+  },
+  {
+    title: "Fonds souverains",
+    description: "Pour des fonds souverains cherchant à diversifier leur exposition géographique en Afrique subsaharienne, Gabon Fiber offre un actif d'infrastructure régulé, à revenus récurrents et long terme. Le portage par une convention de concession d'État réduit le risque et offre une visibilité sur les flux de trésorerie. L'alignement stratégique avec les plans de diversification post-pétrole du Gabon renforce la légitimité de l'engagement.",
+  },
+  {
+    title: "Opérateurs télécoms",
+    description: "Une entrée au capital par apport en nature (fourreaux, équipements, droits de passage) est possible, sur le modèle de l'apport Gabon Telecom (20–25% du capital). Des engagements d'achat de capacités (take-or-pay) sont également envisageables.",
+  },
+  {
+    title: "Agences de crédit export",
+    description: "Les marchés de fourniture d'équipements intégrés dans le projet sont susceptibles de générer des flux d'exportation depuis des pays membres d'ECA ou ceux possédant les leurs. La garantie ECA peut couvrir les risques sur la durée du financement, facilitant l'accès à des conditions de taux compétitives pour un projet dans la zone CEMAC.",
+  },
+  {
+    title: "Banques d'affaires",
+    description: "Gabon Fiber représente une opportunité de conseil et d'arrangement sur un financement de projet d'infrastructure numérique structurant en Afrique centrale. La complexité du montage mêlant dette senior, garanties souveraines, potentielles tranches en devises appelle des banques d'affaires capables de structurer des financements hybrides. La convention de concession offre une base contractuelle solide pour la modélisation des flux et la sécurisation des créanciers.",
+  },
+  {
+    title: "Banques commerciales",
+    description: "Les banques disposent d'une connaissance poussée du terrain pour accompagner Gabon Fiber dans ses besoins de financement opérationnel et de court terme. Les facilités de crédit revolving, les lettres de crédit documentaires et les garanties de bonne exécution sont autant d'instruments où la banque commerciale locale joue un rôle central.",
+  },
+  {
+    title: "Investisseurs institutionnels",
+    description: "La nature réglementée et à long terme de l'actif Gabon Fiber, portée par une concession d'État répond aux critères d'allocation des grands investisseurs institutionnels à la recherche d'actifs infrastructure décorrélés des marchés financiers. Les flux de revenus prévisibles, indexés sur l'utilisation du réseau, offrent un profil de rendement/risque adapté aux passifs de long terme des fonds de pension et des compagnies d'assurance.",
+  },
+  {
+    title: "Fonds d'infrastructure",
+    description: "Le backbone national gabonais constitue un actif d'infrastructure numérique en phase de maturité opérationnelle, avec des revenus concédés, une demande captive des opérateurs télécoms nationaux (Airtel, Gabon Télécom), des fournisseurs d'accès internet et un potentiel d'extensions planifiées. Ce profil brownfield à composante greenfield sur les extensions est particulièrement adapté aux stratégies de fonds infrastructure ciblant des rendements ajustés au risque sur des marchés émergents à fort potentiel de connectivité.",
+  },
+];
+
 function InvestPage() {
   return (
     <PageWrap>
@@ -87,6 +126,30 @@ function InvestPage() {
                 <div className="font-mono text-[11px] tracking-wider text-white/50 uppercase mt-1">{s}</div>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Profils investisseurs */}
+      <section className="bg-navy-deep py-32">
+        <div className="max-w-[1400px] mx-auto px-6 md:px-14">
+          <div className="reveal max-w-3xl mb-16">
+            <div className="s-label mb-6">Opportunités multiples</div>
+            <h2 className="s-title text-5xl text-white mb-6">Un projet,<br /><em>des partenaires</em></h2>
+            <p className="s-body !text-[15.5px]">
+              Que vous soyez arrangeur de dette, institution de développement, fonds d'infrastructure ou conseil spécialisé, Gabon Fiber offre un point d'entrée unique sur la transformation numérique d'un État souverain d'Afrique centrale.
+            </p>
+          </div>
+          <div className="space-y-4">
+            {INVESTOR_PROFILES.map((profile, i) => (
+              <div key={profile.title} className={`reveal d${(i % 4) + 1} bg-white/[0.04] border border-blue-light/30 gf-shape-md p-8 hover:border-blue-light/50 transition-colors`}>
+                <h3 className="font-display font-extrabold text-xl uppercase text-white mb-4">{profile.title}</h3>
+                <p className="text-white/80 text-[15px] leading-relaxed">{profile.description}</p>
+              </div>
+            ))}
+          </div>
+          <div className="text-center mt-16 reveal">
+            <Link to="/contact" className="btn-y">Nous contacter →</Link>
           </div>
         </div>
       </section>
