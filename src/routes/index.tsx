@@ -299,11 +299,10 @@ function Actualites() {
 
 /* ---------------- GOUVERNANCE ---------------- */
 const SHARES = [
-  { name: "SPIN", pct: 25, color: "#0082C6" },
-  { name: "Gabon Télécom", pct: 22, color: "#27AAE1" },
-  { name: "Private Equity (slot ouvert)", pct: 30, color: "#DDDB00", open: true },
-  { name: "GVA", pct: 13, color: "#65AEE0" },
-  { name: "Axione", pct: 10, color: "#59BE98" },
+  { name: "État élargi", pct: 35, color: "#0082C6", note: "≤ 35%" },
+  { name: "Opérateurs télécoms", pct: 25, color: "#27AAE1", note: "20–30%" },
+  { name: "Investisseurs financiers PE", pct: 35, color: "#DDDB00", note: "30–40%", open: true },
+  { name: "Partenaires industriels", pct: 10, color: "#59BE98", note: "10% ou plus" },
 ];
 
 function Gouvernance() {
@@ -314,10 +313,10 @@ function Gouvernance() {
           <div className="lg:col-span-5 reveal">
             <div className="s-label !text-[#DDDB00] mb-6">Gouvernance</div>
             <h2 className="s-title text-5xl md:text-6xl text-white mb-6">
-              Structure du <em>capital</em>
+              Structure du <em>capital cible</em>
             </h2>
             <p className="s-body mb-8">
-              Tour de table en cours de finalisation. Le slot Private Equity reste ouvert pour un ticket de 4 à 6 milliards FCFA (30 à 40% du capital).
+              Structure indicative en cours de finalisation. Le slot Investisseurs financiers PE reste ouvert pour un ticket représentant 30 à 40% du capital.
             </p>
             <a href="#investisseurs" className="btn-y">Investissez →</a>
           </div>
@@ -328,7 +327,7 @@ function Gouvernance() {
                   <span className="font-headline font-bold uppercase text-white tracking-wider" style={{ fontFamily: "var(--font-headline)" }}>
                     {s.name} {s.open && <span className="text-[#DDDB00] text-[11px] ml-2">(SLOT OUVERT)</span>}
                   </span>
-                  <span className="font-mono text-[#DDDB00] font-bold">{s.pct}%</span>
+                  <span className="font-mono text-[#DDDB00] font-bold">{s.note ?? `${s.pct}%`}</span>
                 </div>
                 <div className="h-2 bg-white/10 gf-shape-xs overflow-hidden">
                   <div
@@ -425,23 +424,23 @@ function Investisseurs() {
           </div>
         </div>
 
-        {/* NDA */}
+        {/* Processus d'engagement */}
         <div className="gf-shape-lg bg-[#020366] text-white p-10 md:p-14 reveal">
           <div className="grid md:grid-cols-12 gap-10 items-center">
             <div className="md:col-span-8">
-              <div className="s-label !text-[#DDDB00] mb-5">Processus NDA</div>
+              <div className="s-label !text-[#DDDB00] mb-5">Processus d'engagement</div>
               <h3 className="s-title text-3xl md:text-4xl text-white mb-6">
                 Comment accéder au <em>mémorandum d'information</em> ?
               </h3>
               <ol className="space-y-3 text-white/85 text-[15px]">
-                <li><span className="font-mono text-[#DDDB00] mr-3">01</span>Manifestez-vous en envoyant un email à <a href="mailto:invest@gabonfibersa.ga" className="text-[#DDDB00] underline">invest@gabonfibersa.ga</a> en précisant votre profil.</li>
-                <li><span className="font-mono text-[#DDDB00] mr-3">02</span>Gabon Fiber SA vous adressera un NDA standard à signer.</li>
-                <li><span className="font-mono text-[#DDDB00] mr-3">03</span>Après signature, vous recevrez le mémorandum d'information complet (IM).</li>
+                <li><span className="font-mono text-[#DDDB00] mr-3">01</span>Manifestez-vous en envoyant un email à <a href="mailto:invest@gabon-fiber.ga" className="text-[#DDDB00] underline">invest@gabon-fiber.ga</a> en précisant votre profil.</li>
+                <li><span className="font-mono text-[#DDDB00] mr-3">02</span>Gabon Fiber vous adressera la documentation nécessaire à la mise en place du cadre de discussion.</li>
+                <li><span className="font-mono text-[#DDDB00] mr-3">03</span>Une fois le cadre de discussion posé, la documentation nécessaire vous sera transmise.</li>
               </ol>
-              <p className="mt-6 text-xs text-white/55 italic">Aucun document confidentiel n'est partagé avant signature du NDA.</p>
+              <p className="mt-6 text-xs text-white/55 italic">Aucun document confidentiel n'est partagé avant la mise en place du cadre de discussion.</p>
             </div>
             <div className="md:col-span-4 flex flex-col items-start gap-4">
-              <a href="mailto:invest@gabonfibersa.ga" className="btn-y w-full justify-center">invest@gabonfibersa.ga</a>
+              <a href="mailto:invest@gabon-fiber.ga" className="btn-y w-full justify-center">invest@gabon-fiber.ga</a>
               <a href="#contact" className="btn-g w-full justify-center">Formulaire investisseur</a>
             </div>
           </div>

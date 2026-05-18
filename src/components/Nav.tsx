@@ -1,23 +1,24 @@
 import { useEffect, useState } from "react";
 import logoUrl from "@/assets/logo-gabon-fiber.png";
+import { useI18n } from "@/lib/i18n";
 
 export function Logo({ className = "h-11 w-auto" }: { className?: string }) {
-  return <img src={logoUrl} alt="Gabon Fiber SA" className={className} />;
+  return <img src={logoUrl} alt="Gabon Fiber" className={className} />;
 }
 
 const LINKS = [
-  { href: "#accueil", label: "Accueil" },
-  { href: "#ambitions", label: "Ambitions" },
-  { href: "#backbone", label: "Backbone" },
-  { href: "#actualites", label: "Actualités" },
-  { href: "#gouvernance", label: "Gouvernance" },
-  { href: "#investisseurs", label: "Investissez" },
+  { href: "#accueil", key: "nav.accueil" },
+  { href: "#ambitions", key: "nav.ambitions" },
+  { href: "#backbone", key: "nav.backbone" },
+  { href: "#actualites", key: "nav.actualites" },
+  { href: "#gouvernance", key: "nav.gouvernance" },
+  { href: "#investisseurs", key: "nav.investissez" },
 ];
 
 export function Nav() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
-  const [lang, setLang] = useState<"FR" | "EN">("FR");
+  const { lang, setLang, theme, setTheme, t } = useI18n();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -47,12 +48,20 @@ export function Nav() {
             className="font-headline font-semibold text-[13px] uppercase tracking-[0.08em] text-white/85 hover:text-[#DDDB00] transition-colors"
             style={{ fontFamily: "var(--font-headline)" }}
           >
-            {l.label}
+            {t(l.key)}
           </a>
         ))}
         <a href="#contact" className="btn-y !py-2.5 !px-5 !text-[12px]">
-          Contact
+          {t("nav.contact")}
         </a>
+        <button
+          onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+          aria-label="Toggle theme"
+          title={theme === "dark" ? "Mode clair" : "Mode sombre"}
+          className="ml-2 w-9 h-9 flex items-center justify-center text-white/80 hover:text-[#DDDB00] border border-white/15 gf-shape-xs transition-colors"
+        >
+          {theme === "dark" ? "☀" : "☾"}
+        </button>
         <div className="flex items-center gap-1 ml-2 border-l border-white/15 pl-4">
           {(["FR", "EN"] as const).map((l) => (
             <button
@@ -84,7 +93,7 @@ export function Nav() {
               className="font-headline font-semibold text-sm uppercase tracking-[0.08em] text-white"
               style={{ fontFamily: "var(--font-headline)" }}
             >
-              {l.label}
+              {t(l.key)}
             </a>
           ))}
           <a href="#contact" onClick={() => setOpen(false)} className="btn-y mt-2 self-start">

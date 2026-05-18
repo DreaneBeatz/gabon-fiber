@@ -11,6 +11,7 @@ import {
 import appCss from "../styles.css?url";
 import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
+import { I18nProvider } from "@/lib/i18n";
 
 function NotFoundComponent() {
   return (
@@ -117,11 +118,13 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <Nav />
-      <main className="min-h-screen">
-        <Outlet />
-      </main>
-      <Footer />
+      <I18nProvider>
+        <Nav />
+        <main className="min-h-screen">
+          <Outlet />
+        </main>
+        <Footer />
+      </I18nProvider>
     </QueryClientProvider>
   );
 }
