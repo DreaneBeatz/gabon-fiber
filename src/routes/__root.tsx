@@ -11,6 +11,7 @@ import {
 import appCss from "../styles.css?url";
 import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
+import { I18nProvider } from "@/lib/i18n";
 
 function NotFoundComponent() {
   return (
