@@ -1,23 +1,24 @@
 import { useEffect, useState } from "react";
 import logoUrl from "@/assets/logo-gabon-fiber.png";
+import { useI18n } from "@/lib/i18n";
 
 export function Logo({ className = "h-11 w-auto" }: { className?: string }) {
-  return <img src={logoUrl} alt="Gabon Fiber SA" className={className} />;
+  return <img src={logoUrl} alt="Gabon Fiber" className={className} />;
 }
 
 const LINKS = [
-  { href: "#accueil", label: "Accueil" },
-  { href: "#ambitions", label: "Ambitions" },
-  { href: "#backbone", label: "Backbone" },
-  { href: "#actualites", label: "Actualités" },
-  { href: "#gouvernance", label: "Gouvernance" },
-  { href: "#investisseurs", label: "Investissez" },
+  { href: "#accueil", key: "nav.accueil" },
+  { href: "#ambitions", key: "nav.ambitions" },
+  { href: "#backbone", key: "nav.backbone" },
+  { href: "#actualites", key: "nav.actualites" },
+  { href: "#gouvernance", key: "nav.gouvernance" },
+  { href: "#investisseurs", key: "nav.investissez" },
 ];
 
 export function Nav() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
-  const [lang, setLang] = useState<"FR" | "EN">("FR");
+  const { lang, setLang, theme, setTheme, t } = useI18n();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
