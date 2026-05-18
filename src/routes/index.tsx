@@ -4,6 +4,7 @@ import { Ticker } from "@/components/Ticker";
 import { PageWrap } from "@/components/PageBits";
 import { GabonMap } from "@/components/GabonMap";
 import { Logo } from "@/components/Nav";
+import { useI18n } from "@/lib/i18n";
 
 export const Route = createFileRoute("/")({
   component: Home,
@@ -35,31 +36,31 @@ function FiberBackground() {
   );
 }
 
-const HERO_STATS = [
-  { v: "1 700", u: "Backbone existant", unit: "km" },
-  { v: "+1 650", u: "Extensions prévues", unit: "km" },
-  { v: "3 350", u: "Cible totale", unit: "km" },
-  { v: "Open", u: "Modèle wholesale neutre", unit: "Access" },
-];
-
 function Hero() {
+  const { t } = useI18n();
+  const HERO_STATS = [
+    { v: "1 700", u: t("hero.stat.existing"), unit: "km" },
+    { v: "+1 650", u: t("hero.stat.extensions"), unit: "km" },
+    { v: "3 350", u: t("hero.stat.target"), unit: "km" },
+    { v: "Open", u: t("hero.stat.wholesale"), unit: "Access" },
+  ];
   return (
     <section id="accueil" className="relative min-h-screen flex items-center pt-[140px] pb-20 overflow-hidden">
       <FiberBackground />
       <div className="relative max-w-[1400px] mx-auto px-6 md:px-14 w-full">
         <div className="max-w-4xl">
           <div className="reveal mb-6 inline-block font-headline font-extrabold uppercase tracking-[0.18em] text-[13px] text-[#DDDB00]" style={{ fontFamily: "var(--font-headline)" }}>
-            Connecter l'avenir
+            {t("hero.tag")}
           </div>
           <h1 className="s-title reveal d1 text-[clamp(52px,9.5vw,150px)] text-white mb-8">
             Gabon Fiber <em>&zwnj;</em>
           </h1>
           <p className="s-body reveal d2 max-w-2xl mb-10 !text-[17px] !text-white/80">
-            Gabon Fiber SA est le futur opérateur neutre de référence du backbone national gabonais en fibre optique — un projet stratégique né de la volonté de l'État de garantir sa souveraineté numérique et de doter le Gabon d'une infrastructure de connectivité digne des standards internationaux.
+            {t("hero.desc")}
           </p>
           <div className="reveal d3 flex flex-wrap gap-4">
-            <a href="#investisseurs" className="btn-y">Espace investisseurs →</a>
-            <a href="#backbone" className="btn-g">Découvrir le backbone</a>
+            <a href="#investisseurs" className="btn-y">{t("hero.cta.invest")}</a>
+            <a href="#backbone" className="btn-g">{t("hero.cta.backbone")}</a>
           </div>
         </div>
         <div className="reveal d4 grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-10 mt-20 max-w-5xl border-t border-white/15 pt-10">
@@ -79,29 +80,29 @@ function Hero() {
 }
 
 /* ---------------- AMBITIONS ---------------- */
-const PILLARS = [
-  { n: "01", t: "Couverture Nationale", d: "Connecter toutes les provinces du Gabon d'ici 2029." },
-  { n: "02", t: "Neutralité", d: "Opérateur de gros exclusif, aucune offre retail, accès équitable aux FAI." },
-  { n: "03", t: "Souveraineté Numérique", d: "Infrastructure stratégique, biens de retour à l'État." },
-  { n: "04", t: "Financement Privé", d: "PPP concessif, modèle bankable, TRI 16,9% actionnaire." },
-];
-
 function Ambitions() {
+  const { t } = useI18n();
+  const PILLARS = [
+    { n: "01", t: t("amb.p1.t"), d: t("amb.p1.d") },
+    { n: "02", t: t("amb.p2.t"), d: t("amb.p2.d") },
+    { n: "03", t: t("amb.p3.t"), d: t("amb.p3.d") },
+    { n: "04", t: t("amb.p4.t"), d: t("amb.p4.d") },
+  ];
   return (
     <section id="ambitions" className="bg-[#020366] py-32 relative overflow-hidden">
       <div className="absolute inset-0 opacity-30 pointer-events-none" style={{ background: "radial-gradient(circle at 80% 20%, rgba(39,170,225,0.25), transparent 60%)" }} />
       <div className="relative max-w-[1400px] mx-auto px-6 md:px-14">
         <div className="grid lg:grid-cols-12 gap-12 mb-20 items-start">
           <div className="lg:col-span-4 reveal">
-            <div className="s-label !text-[#DDDB00] mb-6">Ambitions</div>
+            <div className="s-label !text-[#DDDB00] mb-6">{t("amb.label")}</div>
             <h2 className="s-title text-5xl md:text-6xl text-white">
-              Notre<br /><em>mission</em>
+              {t("amb.title1")}<br /><em>{t("amb.title2")}</em>
             </h2>
           </div>
           <div className="lg:col-span-8 reveal d1">
             <blockquote className="border-l-4 border-[#DDDB00] pl-8 py-2">
               <p className="font-headline font-light text-2xl md:text-3xl leading-snug text-white" style={{ fontFamily: "var(--font-headline)" }}>
-                «&nbsp;Opérer et développer le backbone national de la République Gabonaise en fibre optique, avec les principes d'opérateur de gros, de neutralité et de non-discrimination.&nbsp;»
+                {t("amb.quote")}
               </p>
             </blockquote>
           </div>
@@ -122,14 +123,6 @@ function Ambitions() {
 }
 
 /* ---------------- BACKBONE ---------------- */
-const PHASES = [
-  { label: "Réseau existant", km: 1700 },
-  { label: "Phase 1 — Mouila / Tchibanga", km: 2120 },
-  { label: "Phase 2 — Port-Gentil / Yombi", km: 2500 },
-  { label: "Phase 3 — Ndendé / Koulamoutou", km: 2880 },
-  { label: "Phase 4 — Makokou / Kélé", km: 3350 },
-];
-
 function useCounter(target: number, duration = 1200) {
   const [value, setValue] = useState(target);
   const fromRef = useRef(target);
@@ -151,10 +144,19 @@ function useCounter(target: number, duration = 1200) {
 }
 
 function Backbone() {
+  const { t, lang } = useI18n();
+  const PHASES = [
+    { label: t("bb.ph0"), km: 1700 },
+    { label: t("bb.ph1"), km: 2120 },
+    { label: t("bb.ph2"), km: 2500 },
+    { label: t("bb.ph3"), km: 2880 },
+    { label: t("bb.ph4"), km: 3350 },
+  ];
   const [phaseIdx, setPhaseIdx] = useState(0);
   const km = useCounter(PHASES[phaseIdx].km);
   const sectionRef = useRef<HTMLDivElement | null>(null);
   const triggered = useRef(false);
+  const locale = lang === "FR" ? "fr-FR" : "en-US";
 
   useEffect(() => {
     const el = sectionRef.current;
@@ -184,18 +186,18 @@ function Backbone() {
       <div className="max-w-[1400px] mx-auto px-6 md:px-14">
         <div className="grid lg:grid-cols-12 gap-12 mb-16">
           <div className="lg:col-span-5 reveal">
-            <div className="s-label !text-[#DDDB00] mb-6">Backbone</div>
+            <div className="s-label !text-[#DDDB00] mb-6">{t("bb.label")}</div>
             <h2 className="s-title text-5xl md:text-6xl text-white mb-6">
-              Du backbone<br />à l'<em>extension nationale</em>
+              {t("bb.title1")}<br /><em>{t("bb.title2")}</em>
             </h2>
             <p className="s-body mb-8">
-              1 700 km opérationnels aujourd'hui. +1 650 km en construction sur 4 phases pour atteindre 3 350 km et désenclaver l'intérieur du pays.
+              {t("bb.desc")}
             </p>
 
             <div className="gf-shape-md bg-[#0082C6]/15 border border-[#27AAE1]/30 p-8 mb-6">
-              <div className="font-mono text-[10px] tracking-widest text-[#DDDB00] uppercase mb-2">Compteur backbone</div>
+              <div className="font-mono text-[10px] tracking-widest text-[#DDDB00] uppercase mb-2">{t("bb.counter")}</div>
               <div className="font-headline font-extrabold text-7xl md:text-8xl text-white leading-none" style={{ fontFamily: "var(--font-headline)" }}>
-                {km.toLocaleString("fr-FR")}
+                {km.toLocaleString(locale)}
                 <span className="text-3xl md:text-4xl text-[#DDDB00] ml-2">km</span>
               </div>
               <div className="font-headline font-bold text-sm uppercase tracking-wider text-[#27AAE1] mt-3" style={{ fontFamily: "var(--font-headline)" }}>
@@ -215,7 +217,7 @@ function Backbone() {
                   }`}
                 >
                   <span className="font-headline font-bold uppercase text-[13px] tracking-wider" style={{ fontFamily: "var(--font-headline)" }}>{p.label}</span>
-                  <span className="font-mono text-[12px]">{p.km.toLocaleString("fr-FR")} km</span>
+                  <span className="font-mono text-[12px]">{p.km.toLocaleString(locale)} km</span>
                 </button>
               ))}
             </div>
@@ -231,27 +233,6 @@ function Backbone() {
 }
 
 /* ---------------- ACTUALITÉS ---------------- */
-const NEWS = [
-  {
-    cat: "Institutionnel",
-    date: "À venir",
-    t: "Création officielle de Gabon Fiber SA",
-    d: "Gabon Fiber SA est officiellement constituée en société anonyme de droit gabonais. La société est appelée à reprendre l'exploitation du backbone fibre national à l'expiration de la DSP Axione en novembre 2026.",
-  },
-  {
-    cat: "Gouvernance",
-    date: "À venir",
-    t: "Premier Conseil d'Administration",
-    d: "Le premier Conseil d'Administration de Gabon Fiber SA s'est tenu à Libreville. Il a acté les premières orientations stratégiques de la société et validé les grandes lignes du plan de développement du backbone national.",
-  },
-  {
-    cat: "Infrastructure",
-    date: "À venir",
-    t: "Visite du backbone par M. le Ministre",
-    d: "M. le Ministre en charge du Numérique a effectué une visite des installations du backbone fibre national, accompagné de l'équipe de direction de Gabon Fiber SA. Cette visite illustre l'engagement de l'État dans le développement de l'infrastructure numérique du pays.",
-  },
-];
-
 function NewsPlaceholder({ cat }: { cat: string }) {
   return (
     <div className="aspect-[16/10] relative overflow-hidden gf-shape-md flex items-center justify-center" style={{ background: "linear-gradient(135deg, #020366 0%, #0082C6 100%)" }}>
@@ -265,14 +246,20 @@ function NewsPlaceholder({ cat }: { cat: string }) {
 }
 
 function Actualites() {
+  const { t } = useI18n();
+  const NEWS = [
+    { cat: t("news.c1"), date: t("news.soon"), t: t("news.t1"), d: t("news.d1") },
+    { cat: t("news.c2"), date: t("news.soon"), t: t("news.t2"), d: t("news.d2") },
+    { cat: t("news.c3"), date: t("news.soon"), t: t("news.t3"), d: t("news.d3") },
+  ];
   return (
     <section id="actualites" className="bg-[#f4f8fc] text-[#020366] py-32">
       <div className="max-w-[1400px] mx-auto px-6 md:px-14">
         <div className="flex flex-wrap items-end justify-between mb-14 gap-6">
           <div className="reveal">
-            <div className="s-label !text-[#0082C6] mb-5">Actualités</div>
+            <div className="s-label !text-[#0082C6] mb-5">{t("news.label")}</div>
             <h2 className="s-title text-5xl md:text-6xl !text-[#020366]">
-              Dernières <em className="!text-[#0082C6]">nouvelles</em>
+              {t("news.title1")} <em className="!text-[#0082C6]">{t("news.title2")}</em>
             </h2>
           </div>
         </div>
@@ -287,7 +274,7 @@ function Actualites() {
                 </div>
                 <h3 className="font-headline font-extrabold text-xl uppercase text-[#020366] leading-tight mb-3" style={{ fontFamily: "var(--font-headline)" }}>{n.t}</h3>
                 <p className="text-sm text-[#536B79] leading-relaxed mb-5 flex-1">{n.d}</p>
-                <span className="font-headline font-bold uppercase text-[#0082C6] tracking-widest text-xs" style={{ fontFamily: "var(--font-headline)" }}>Lire →</span>
+                <span className="font-headline font-bold uppercase text-[#0082C6] tracking-widest text-xs" style={{ fontFamily: "var(--font-headline)" }}>{t("news.read")}</span>
               </div>
             </article>
           ))}
@@ -298,36 +285,36 @@ function Actualites() {
 }
 
 /* ---------------- GOUVERNANCE ---------------- */
-const SHARES = [
-  { name: "État élargi", pct: 35, color: "#0082C6", note: "≤ 35%" },
-  { name: "Opérateurs télécoms", pct: 25, color: "#27AAE1", note: "20–30%" },
-  { name: "Investisseurs financiers PE", pct: 35, color: "#DDDB00", note: "30–40%", open: true },
-  { name: "Partenaires industriels", pct: 10, color: "#59BE98", note: "10% ou plus" },
-];
-
 function Gouvernance() {
+  const { t } = useI18n();
+  const SHARES = [
+    { name: t("gov.s1"), pct: 35, color: "#0082C6", note: t("gov.n1") },
+    { name: t("gov.s2"), pct: 25, color: "#27AAE1", note: t("gov.n2") },
+    { name: t("gov.s3"), pct: 35, color: "#DDDB00", note: t("gov.n3"), open: true },
+    { name: t("gov.s4"), pct: 10, color: "#59BE98", note: t("gov.n4") },
+  ];
   return (
     <section id="gouvernance" className="bg-[#020366] py-32">
       <div className="max-w-[1400px] mx-auto px-6 md:px-14">
         <div className="grid lg:grid-cols-12 gap-12">
           <div className="lg:col-span-5 reveal">
-            <div className="s-label !text-[#DDDB00] mb-6">Gouvernance</div>
+            <div className="s-label !text-[#DDDB00] mb-6">{t("gov.label")}</div>
             <h2 className="s-title text-5xl md:text-6xl text-white mb-6">
-              Structure du <em>capital cible</em>
+              {t("gov.title1")} <em>{t("gov.title2")}</em>
             </h2>
             <p className="s-body mb-8">
-              Structure indicative en cours de finalisation. Le slot Investisseurs financiers PE reste ouvert pour un ticket représentant 30 à 40% du capital.
+              {t("gov.desc")}
             </p>
-            <a href="#investisseurs" className="btn-y">Investissez →</a>
+            <a href="#investisseurs" className="btn-y">{t("gov.cta")}</a>
           </div>
           <div className="lg:col-span-7 reveal d2 space-y-4">
             {SHARES.map((s, i) => (
               <div key={s.name} className={`gf-shape-md bg-white/[0.04] border border-white/10 p-5`}>
                 <div className="flex justify-between mb-2">
                   <span className="font-headline font-bold uppercase text-white tracking-wider" style={{ fontFamily: "var(--font-headline)" }}>
-                    {s.name} {s.open && <span className="text-[#DDDB00] text-[11px] ml-2">(SLOT OUVERT)</span>}
+                    {s.name} {s.open && <span className="text-[#DDDB00] text-[11px] ml-2">{t("gov.slot")}</span>}
                   </span>
-                  <span className="font-mono text-[#DDDB00] font-bold">{s.note ?? `${s.pct}%`}</span>
+                  <span className="font-mono text-[#DDDB00] font-bold">{s.note}</span>
                 </div>
                 <div className="h-2 bg-white/10 gf-shape-xs overflow-hidden">
                   <div
@@ -345,55 +332,34 @@ function Gouvernance() {
 }
 
 /* ---------------- INVESTISSEURS ---------------- */
-const FIN_KPIS = [
-  { k: "Investissement total", v: "52 Mds FCFA", s: "~80 M€ HT" },
-  { k: "Fonds propres", v: "13 Mds FCFA", s: "25%" },
-  { k: "Dette institutionnelle", v: "31 Mds FCFA", s: "60%" },
-  { k: "Dons Global Gateway UE", v: "7,8 Mds FCFA", s: "15%" },
-  { k: "TRI Projet", v: "14,6%", s: "" },
-  { k: "TRI Actionnaire", v: "16,9%", s: "sur 15–20 ans" },
-  { k: "EBITDA moyen cible", v: "~45%", s: "" },
-  { k: "Extensions à financer", v: "1 650 km", s: "en 4 ans" },
-];
-
-const PROFILES = [
-  {
-    t: "Fonds de Private Equity",
-    d: "Le slot investisseur financier est actuellement ouvert pour un ticket de 4 à 6 milliards FCFA (30 à 40% du capital). Gabon Fiber SA offre un TRI actionnaire de 16,9% sur 15 à 20 ans dans un secteur régulé à revenus récurrents.",
-    cta: "Demander le mémorandum →",
-  },
-  {
-    t: "Banques d'Affaires",
-    d: "Nous recherchons un conseil financier pour accompagner la structuration de la levée de fonds, la négociation avec les bailleurs institutionnels et la mise en place du tour de table.",
-    cta: "Nous contacter →",
-  },
-  {
-    t: "Institutions Financières (DFI / Multilatéraux)",
-    d: "AFD, BEI, BDEAC et institutions similaires peuvent intervenir sous forme de prêts concessionnels, garanties ou subventions. 60% du plan de financement est dédié à la dette institutionnelle (31 Mds FCFA).",
-    cta: "Nous contacter →",
-  },
-  {
-    t: "Opérateurs Télécoms",
-    d: "Une entrée au capital par apport en nature (fourreaux, équipements, droits de passage) est possible, sur le modèle de l'apport Gabon Telecom (20–25% du capital). Des engagements d'achat de capacités (take-or-pay) sont également envisageables.",
-    cta: "Nous contacter →",
-  },
-  {
-    t: "Institutions Publiques & Gouvernements",
-    d: "Des partenariats publics-privés structurés, des fonds dédiés à la connectivité ou des mandats de financement peuvent être discutés avec les autorités mandataires concernées.",
-    cta: "Nous contacter →",
-  },
-];
-
 function Investisseurs() {
+  const { t } = useI18n();
+  const FIN_KPIS = [
+    { k: t("inv.kpi1"), v: "52 Mds FCFA", s: "~80 M€ HT" },
+    { k: t("inv.kpi2"), v: "13 Mds FCFA", s: "25%" },
+    { k: t("inv.kpi3"), v: "31 Mds FCFA", s: "60%" },
+    { k: t("inv.kpi4"), v: "7,8 Mds FCFA", s: "15%" },
+    { k: t("inv.kpi5"), v: "14,6%", s: "" },
+    { k: t("inv.kpi6"), v: "16,9%", s: t("inv.kpi6s") },
+    { k: t("inv.kpi7"), v: "~45%", s: "" },
+    { k: t("inv.kpi8"), v: "1 650 km", s: t("inv.kpi8s") },
+  ];
+  const PROFILES = [
+    { t: t("inv.pr1.t"), d: t("inv.pr1.d"), cta: t("inv.pr1.c") },
+    { t: t("inv.pr2.t"), d: t("inv.pr2.d"), cta: t("inv.contact") },
+    { t: t("inv.pr3.t"), d: t("inv.pr3.d"), cta: t("inv.contact") },
+    { t: t("inv.pr4.t"), d: t("inv.pr4.d"), cta: t("inv.contact") },
+    { t: t("inv.pr5.t"), d: t("inv.pr5.d"), cta: t("inv.contact") },
+  ];
   return (
     <section id="investisseurs" className="bg-[#f4f8fc] text-[#020366] py-32">
       <div className="max-w-[1400px] mx-auto px-6 md:px-14">
         <div className="max-w-3xl mb-14 reveal">
-          <div className="s-label !text-[#0082C6] mb-6">Investissez</div>
+          <div className="s-label !text-[#0082C6] mb-6">{t("inv.label")}</div>
           <h2 className="s-title text-5xl md:text-6xl !text-[#020366] mb-4">
-            Investissez dans<br /><em className="!text-[#0082C6]">Gabon Fiber SA</em>
+            {t("inv.title1")}<br /><em className="!text-[#0082C6]">Gabon Fiber SA</em>
           </h2>
-          <p className="text-lg text-[#536B79]">Une opportunité unique d'infrastructure en Afrique centrale.</p>
+          <p className="text-lg text-[#536B79]">{t("inv.subtitle")}</p>
         </div>
 
         {/* KPIs */}
@@ -409,7 +375,7 @@ function Investisseurs() {
 
         {/* Profils */}
         <div className="mb-16">
-          <h3 className="s-title text-3xl md:text-4xl !text-[#020366] mb-10">Profils <em className="!text-[#0082C6]">investisseurs</em></h3>
+          <h3 className="s-title text-3xl md:text-4xl !text-[#020366] mb-10">{t("inv.profiles")} <em className="!text-[#0082C6]">{t("inv.profiles2")}</em></h3>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {PROFILES.map((p, i) => (
               <div key={p.t} className={`reveal d${(i % 3) + 1} gf-shape-lg bg-white border border-[#27AAE1]/25 p-8 flex flex-col hover:border-[#DDDB00] transition-colors`}>
@@ -428,20 +394,20 @@ function Investisseurs() {
         <div className="gf-shape-lg bg-[#020366] text-white p-10 md:p-14 reveal">
           <div className="grid md:grid-cols-12 gap-10 items-center">
             <div className="md:col-span-8">
-              <div className="s-label !text-[#DDDB00] mb-5">Processus d'engagement</div>
+              <div className="s-label !text-[#DDDB00] mb-5">{t("eng.label")}</div>
               <h3 className="s-title text-3xl md:text-4xl text-white mb-6">
-                Comment accéder au <em>mémorandum d'information</em> ?
+                {t("eng.title1")} <em>{t("eng.title2")}</em>{t("eng.q")}
               </h3>
               <ol className="space-y-3 text-white/85 text-[15px]">
-                <li><span className="font-mono text-[#DDDB00] mr-3">01</span>Manifestez-vous en envoyant un email à <a href="mailto:invest@gabon-fiber.ga" className="text-[#DDDB00] underline">invest@gabon-fiber.ga</a> en précisant votre profil.</li>
-                <li><span className="font-mono text-[#DDDB00] mr-3">02</span>Gabon Fiber vous adressera la documentation nécessaire à la mise en place du cadre de discussion.</li>
-                <li><span className="font-mono text-[#DDDB00] mr-3">03</span>Une fois le cadre de discussion posé, la documentation nécessaire vous sera transmise.</li>
+                <li><span className="font-mono text-[#DDDB00] mr-3">01</span>{t("eng.s1")} <a href="mailto:invest@gabon-fiber.ga" className="text-[#DDDB00] underline">invest@gabon-fiber.ga</a> {t("eng.s1b")}</li>
+                <li><span className="font-mono text-[#DDDB00] mr-3">02</span>{t("eng.s2")}</li>
+                <li><span className="font-mono text-[#DDDB00] mr-3">03</span>{t("eng.s3")}</li>
               </ol>
-              <p className="mt-6 text-xs text-white/55 italic">Aucun document confidentiel n'est partagé avant la mise en place du cadre de discussion.</p>
+              <p className="mt-6 text-xs text-white/55 italic">{t("eng.note")}</p>
             </div>
             <div className="md:col-span-4 flex flex-col items-start gap-4">
               <a href="mailto:invest@gabon-fiber.ga" className="btn-y w-full justify-center">invest@gabon-fiber.ga</a>
-              <a href="#contact" className="btn-g w-full justify-center">Formulaire investisseur</a>
+              <a href="#contact" className="btn-g w-full justify-center">{t("eng.form")}</a>
             </div>
           </div>
         </div>
@@ -452,6 +418,7 @@ function Investisseurs() {
 
 /* ---------------- CONTACT ---------------- */
 function Contact() {
+  const { t } = useI18n();
   const [tab, setTab] = useState<"general" | "investor">("general");
   const [sent, setSent] = useState(false);
 
@@ -465,20 +432,20 @@ function Contact() {
     <section id="contact" className="bg-[#010234] py-32">
       <div className="max-w-[1200px] mx-auto px-6 md:px-14">
         <div className="reveal max-w-3xl mb-12">
-          <div className="s-label !text-[#DDDB00] mb-6">Contact</div>
+          <div className="s-label !text-[#DDDB00] mb-6">{t("ct.label")}</div>
           <h2 className="s-title text-5xl md:text-6xl text-white mb-4">
-            Échangeons avec <em>Gabon Fiber SA</em>
+            {t("ct.title1")} <em>Gabon Fiber SA</em>
           </h2>
         </div>
 
         <div className="flex gap-2 mb-8">
           {([
-            ["general", "Contact général"],
-            ["investor", "Investisseurs"],
+            ["general", t("ct.tab.gen")],
+            ["investor", t("ct.tab.inv")],
           ] as const).map(([k, label]) => (
             <button
               key={k}
-              onClick={() => setTab(k)}
+              onClick={() => setTab(k as "general" | "investor")}
               className={`gf-shape-sm px-6 py-3 font-headline font-bold uppercase tracking-wider text-[13px] transition-all ${
                 tab === k
                   ? "bg-[#DDDB00] text-[#020366]"
@@ -499,64 +466,64 @@ function Contact() {
             {tab === "general" ? (
               <>
                 <div className="grid md:grid-cols-2 gap-5">
-                  <Field label="Prénom" name="firstname" required />
-                  <Field label="Nom" name="lastname" required />
+                  <Field label={t("ct.firstname")} name="firstname" required />
+                  <Field label={t("ct.lastname")} name="lastname" required />
                 </div>
-                <Field label="Société" name="company" />
-                <Field label="Email" name="email" type="email" required />
-                <Field label="Objet" name="subject" />
-                <Textarea label="Message" name="message" required />
-                <button type="submit" className="btn-y">Envoyer →</button>
+                <Field label={t("ct.company")} name="company" />
+                <Field label={t("ct.email")} name="email" type="email" required />
+                <Field label={t("ct.subject")} name="subject" />
+                <Textarea label={t("ct.message")} name="message" required />
+                <button type="submit" className="btn-y">{t("ct.send")}</button>
               </>
             ) : (
               <>
                 <div className="bg-[#DDDB00]/10 border border-[#DDDB00]/30 gf-shape-sm p-4 text-sm text-white/85">
-                  Votre demande sera traitée sous 48h. Un NDA vous sera envoyé avant tout partage de document.
+                  {t("ct.inv.notice")}
                 </div>
                 <div className="grid md:grid-cols-2 gap-5">
-                  <Field label="Prénom" name="firstname" required />
-                  <Field label="Nom" name="lastname" required />
+                  <Field label={t("ct.firstname")} name="firstname" required />
+                  <Field label={t("ct.lastname")} name="lastname" required />
                 </div>
-                <Field label="Société / Fonds" name="fund" required />
+                <Field label={t("ct.fund")} name="fund" required />
                 <div className="grid md:grid-cols-2 gap-5">
-                  <Field label="Email" name="email" type="email" required />
-                  <Field label="Téléphone" name="phone" type="tel" />
+                  <Field label={t("ct.email")} name="email" type="email" required />
+                  <Field label={t("ct.phone")} name="phone" type="tel" />
                 </div>
                 <div>
-                  <label className="block font-mono text-[10px] tracking-widest text-[#DDDB00] uppercase mb-2">Type d'investisseur</label>
+                  <label className="block font-mono text-[10px] tracking-widest text-[#DDDB00] uppercase mb-2">{t("ct.type")}</label>
                   <select required className="w-full bg-[#010234] border border-[#27AAE1]/30 gf-shape-sm px-4 py-3 text-white">
-                    <option>Fonds Private Equity</option>
-                    <option>Banque d'affaires</option>
-                    <option>DFI / Multilatéral</option>
-                    <option>Opérateur télécom</option>
-                    <option>Institution publique</option>
-                    <option>Autre</option>
+                    <option>{t("ct.type.pe")}</option>
+                    <option>{t("ct.type.bank")}</option>
+                    <option>{t("ct.type.dfi")}</option>
+                    <option>{t("ct.type.telco")}</option>
+                    <option>{t("ct.type.pub")}</option>
+                    <option>{t("ct.type.other")}</option>
                   </select>
                 </div>
-                <Textarea label="Message" name="message" required />
-                <button type="submit" className="btn-y">Envoyer ma demande →</button>
+                <Textarea label={t("ct.message")} name="message" required />
+                <button type="submit" className="btn-y">{t("ct.send.inv")}</button>
               </>
             )}
             {sent && (
-              <div className="text-[#59BE98] font-mono text-sm">✓ Message envoyé — nous vous répondrons sous 48h.</div>
+              <div className="text-[#59BE98] font-mono text-sm">{t("ct.sent")}</div>
             )}
           </form>
 
           <aside className="gf-shape-lg bg-[#020366] border border-[#27AAE1]/25 p-8 space-y-6">
             <div>
-              <div className="s-label !text-[#DDDB00] mb-3">Coordonnées</div>
+              <div className="s-label !text-[#DDDB00] mb-3">{t("ct.coord")}</div>
               <p className="font-headline font-extrabold text-2xl text-white mb-1" style={{ fontFamily: "var(--font-headline)" }}>Libreville, Gabon</p>
             </div>
             <div>
-              <div className="font-mono text-[10px] tracking-widest text-white/50 uppercase mb-1">Contact général</div>
+              <div className="font-mono text-[10px] tracking-widest text-white/50 uppercase mb-1">{t("ct.general")}</div>
               <a href="mailto:contact@gabonfibersa.ga" className="text-[#DDDB00] font-mono">contact@gabonfibersa.ga</a>
             </div>
             <div>
-              <div className="font-mono text-[10px] tracking-widest text-white/50 uppercase mb-1">Investisseurs</div>
+              <div className="font-mono text-[10px] tracking-widest text-white/50 uppercase mb-1">{t("ct.investors")}</div>
               <a href="mailto:invest@gabonfibersa.ga" className="text-[#DDDB00] font-mono">invest@gabonfibersa.ga</a>
             </div>
             <div>
-              <div className="font-mono text-[10px] tracking-widest text-white/50 uppercase mb-1">Téléphone</div>
+              <div className="font-mono text-[10px] tracking-widest text-white/50 uppercase mb-1">{t("ct.phoneL")}</div>
               <p className="text-white font-mono">011 24 76 15</p>
             </div>
           </aside>
