@@ -85,7 +85,7 @@ export function Nav() {
               className="font-headline font-semibold text-sm uppercase tracking-[0.08em] text-white"
               style={{ fontFamily: "var(--font-headline)" }}
             >
-              {l.label}
+              {t(l.key)}
             </a>
           ))}
           <a href="#contact" onClick={() => setOpen(false)} className="btn-y mt-2 self-start">
